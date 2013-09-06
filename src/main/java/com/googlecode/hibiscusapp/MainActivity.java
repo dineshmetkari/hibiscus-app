@@ -2,7 +2,6 @@ package com.googlecode.hibiscusapp;
 
 import android.app.Activity;
 import android.os.Bundle;
-import com.googlecode.R;
 
 /**
  * Package: com.googlecode.hibiscusapp
