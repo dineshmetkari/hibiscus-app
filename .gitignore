@@ -1,3 +1,10 @@
-target/
 .idea/
-hibiscusapp.iml
+bin/
+gen/
+out/
+ant.properties
+proguard-project.txt
+build.xml
+hibiscus-app.iml
+local.properties
+project.properties

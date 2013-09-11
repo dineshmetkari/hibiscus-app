@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="drawer_open">Navigation öffnen</string>
+    <string name="drawer_close">Navigation schließen</string>
+
+    <string name="app_name">Hibiscus App</string>
+    <string name="animation_zoom">animation_zoom</string>
+
+    <!-- Titles -->
+    <string name="title_overview">Kontenübersicht</string>
+    <string name="title_settings">Einstellungen</string>
+
+    <!-- Menu labels -->
+    <string name="menu">Menü</string>
+    <string name="menu_item_overview">Kontenübersicht</string>
+    <string name="menu_item_activities">Umsätze</string>
+    <string name="menu_item_statistics">Statistiken</string>
+    <string name="menu_item_settings">Einstellungen</string>
+    <string name="accounts">Konten</string>
+    <string name="menu_refresh">Ref</string>
+
+    <!-- Preferences -->
+    <string name="pref_hibiscus_key">pref_hibiscus</string>
+    <string name="pref_hibiscus_title">Hibiscus XML-RPC Schnittstelle</string>
+    <string name="pref_hibiscus_server">Server</string>
+    <string name="pref_hibiscus_server_key">pref_hibiscus_server</string>
+    <string name="pref_hibiscus_server_summary">Name oder IP des Servers</string>
+    <string name="pref_hibiscus_server_default">localhost</string>
+    <string name="pref_hibiscus_port">Port</string>
+    <string name="pref_hibiscus_port_key">pref_hibiscus_port</string>
+    <string name="pref_hibiscus_port_summary">Der Port, auf dem die Schnittstelle horcht</string>
+    <string name="pref_hibiscus_port_default">8080</string>
+    <string name="pref_hibiscus_username">Benutzername</string>
+    <string name="pref_hibiscus_username_key">pref_hibiscus_username</string>
+    <string name="pref_hibiscus_username_summary">Benutzername für den Login an der XML-RPC Schnittstelle. Standard: admin</string>
+    <string name="pref_hibiscus_username_default">admin</string>
+    <string name="pref_hibiscus_password">Passwort</string>
+    <string name="pref_hibiscus_password_key">pref_hibiscus_password</string>
+    <string name="pref_hibiscus_password_summary">Masterpasswort des Hibiscus Plugins</string>
+
+    <string name="pref_sync_key">pref_sync</string>
+    <string name="pref_sync_title">Synchronisierung</string>
+    <string name="pref_sync_active_key">pref_sync_active</string>
+    <string name="pref_sync_active_title">Synchronisieren</string>
+    <string name="pref_sync_active_summary_on">Daten automatisch mit Server synchronisieren</string>
+    <string name="pref_sync_active_summary_off">Daten ausschließlich manuell synchronisieren</string>
+    <bool name="pref_sync_active_default">true</bool>
+    <string name="pref_sync_interval_key">pref_sync_interval</string>
+    <string name="pref_sync_interval_title">Intervall</string>
+    <string name="pref_sync_interval_default">720</string>
+    <string-array name="pref_sync_interval_entries">
+        <item>Alle 30 Minuten</item>
+        <item>Alle 60 Minuten</item>
+        <item>Alle 2 Stunden</item>
+        <item>Alle 6 Stunden</item>
+        <item>Alle 12 Stunden</item>
+        <item>Alle 24 Stunden</item>
+    </string-array>
+    <string-array name="pref_sync_interval_values">
+        <item>30</item>
+        <item>60</item>
+        <item>120</item>
+        <item>360</item>
+        <item>720</item>
+        <item>1440</item>
+    </string-array>
+</resources>

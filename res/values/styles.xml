@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Styles for the light theme -->
+    <style name="HibicusApp.LightTheme.ActionBarStyle" parent="@style/Widget.AppCompat.Light.ActionBar">
+        <item name="android:background">@color/titleBackgroundColor</item>
+        <item name="android:titleTextStyle">@style/HibicusApp.LightTheme.ActionBar.TitleTextStyle</item>
+        <item name="android:icon">@drawable/ic_menu_logo</item>
+        <item name="selectableItemBackground">@drawable/action_item_background</item>
+    </style>
+    <style name="HibicusApp.LightTheme.ActionBar.TitleTextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/titleTextColor</item>
+    </style>
+</resources>

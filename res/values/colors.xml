@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- actionbar -->
+    <color name="titleBackgroundColor">#32B3E2</color>
+    <color name="titleTextColor">#D6F0F9</color>
+    <!--<color name="highlightColor">#4FC5F1</color>-->
+    <color name="highlightColor">#4FC5F1</color>
+
+    <!-- content -->
+    <color name="contentBackgroundColor">#E7E7E7</color>
+
+    <!-- drawer -->
+    <color name="drawerBackgroundColor">#CACACA</color>
+</resources>
