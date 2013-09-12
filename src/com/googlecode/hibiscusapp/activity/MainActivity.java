@@ -2,10 +2,12 @@ package com.googlecode.hibiscusapp.activity;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.LoaderManager;
+import android.content.CursorLoader;
 import android.content.Intent;
+import android.content.Loader;
 import android.content.res.Configuration;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
@@ -17,21 +19,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 import com.googlecode.hibiscusapp.R;
+import com.googlecode.hibiscusapp.database.AccountProvider;
 import com.googlecode.hibiscusapp.database.AccountTable;
-import com.googlecode.hibiscusapp.database.HibiscusDatabaseHelper;
 import com.googlecode.hibiscusapp.fragment.ActivitiesFragment;
 import com.googlecode.hibiscusapp.fragment.OverviewFragment;
 import com.googlecode.hibiscusapp.fragment.StatisticsFragment;
-import com.googlecode.hibiscusapp.menu.AccountItem;
-import com.googlecode.hibiscusapp.menu.AccountItemAdapter;
 import com.googlecode.hibiscusapp.menu.DrawerItem;
 import com.googlecode.hibiscusapp.menu.DrawerItemAdapter;
-import com.googlecode.hibiscusapp.model.Account;
 import com.googlecode.hibiscusapp.util.Constants;
-
-import java.util.Date;
 
 /**
  * Package: com.googlecode.hibiscusapp.activity
@@ -49,7 +47,7 @@ public class MainActivity extends ActionBarActivity
     private DrawerItemAdapter menuItemAdapter;
 
     private ListView accountList;
-    private AccountItemAdapter accountItemAdapter;
+    private SimpleCursorAdapter accountItemAdapter;
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
@@ -70,7 +68,7 @@ public class MainActivity extends ActionBarActivity
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_drawer, R.string.drawer_open,R.string.drawer_close) {
             public void onDrawerClosed(View view) {
                 getActionBar().setTitle(fragmentTitle);
-                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+                invalidateOptionsMenu();
             }
 
             public void onDrawerOpened(View drawerView) {
@@ -97,33 +95,17 @@ public class MainActivity extends ActionBarActivity
         // create account items
         accountList = (ListView) findViewById(R.id.drawer_accounts_list);
         accountList.setOnItemClickListener(new AccountItemClickListener());
-        accountItemAdapter = new AccountItemAdapter(getApplicationContext());
+        accountItemAdapter = new SimpleCursorAdapter(getApplicationContext(), R.layout.account_item, null,
+            new String[] {AccountTable.COLUMN_ACCOUNT_NUMBER}, new int[] {R.id.account_item_title}, 0);
         accountList.setAdapter(accountItemAdapter);
 
-        SQLiteDatabase db = new HibiscusDatabaseHelper(getApplicationContext()).getReadableDatabase();
-        Cursor cursor = db.query(AccountTable.TABLE_ACCOUNT, null, null, null, null, null, null);
 
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            Account account = cursorToAccount(cursor);
-            accountItemAdapter.add(new AccountItem(account, R.drawable.ic_menu_account));
-            cursor.moveToNext();
-        }
+        getLoaderManager().initLoader(0, null, new AccountLoaderCallback());
 
         if (savedInstanceState == null) {
             // set the overview fragment as default
             selectItem(0);
         }
-    }
-
-    private Account cursorToAccount(Cursor cursor) {
-        int id = cursor.getInt(0);
-        int accountNumber = cursor.getInt(1);
-        String accountHolder = cursor.getString(2);
-        double balance = cursor.getDouble(3);
-        int date = cursor.getInt(4);
-
-        return new Account(id, accountNumber, accountHolder, balance, new Date(date));
     }
 
     @Override
@@ -172,9 +154,32 @@ public class MainActivity extends ActionBarActivity
     private class AccountItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            AccountItem item = accountItemAdapter.getItem(position);
-            Toast.makeText(getApplicationContext(), item.getAccount().getAccountNumber() + " wurde gedrückt!", Toast.LENGTH_LONG).show();
+            //AccountItem item = accountItemAdapter.getItem(position);
+            //Toast.makeText(getApplicationContext(), item.getAccount().getAccountNumber() + " wurde gedrückt!", Toast.LENGTH_LONG).show();
             //selectItem(position);
+        }
+    }
+
+    private class AccountLoaderCallback implements LoaderManager.LoaderCallbacks<Cursor>
+    {
+        @Override
+        public Loader<Cursor> onCreateLoader(int id, Bundle args)
+        {
+            return new CursorLoader(MainActivity.this, AccountProvider.CONTENT_URI, null, null, null, null);
+        }
+
+        @Override
+        public void onLoadFinished(Loader<Cursor> loader, Cursor cursor)
+        {
+            // set the new cursor in the list adapter
+            accountItemAdapter.swapCursor(cursor);
+        }
+
+        @Override
+        public void onLoaderReset(Loader<Cursor> loader)
+        {
+            // reset the cursor of the list adapter
+            accountItemAdapter.swapCursor(null);
         }
     }
 
