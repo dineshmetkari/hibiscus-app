@@ -2,13 +2,78 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/contentBackgroundColor">
+    android:layout_height="match_parent">
 
-    <TextView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Kontenübersicht"
-        android:layout_gravity="center" />
+        android:layout_height="wrap_content"
+        android:background="@color/box_background_color"
+        android:padding="@dimen/box_padding"
+        android:clickable="true">
+
+        <!-- Kontoname -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/acocunt_item_title_size"
+            android:text="Konto 252403" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/drawer_divider_height"
+            android:background="@color/divider_color" />
+
+        <!-- balance-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:textSize="@dimen/text_size">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:textSize="@dimen/text_size"
+                android:text="Saldo:" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size"
+                android:text="13.587,83 Euro"
+                android:textColor="@android:color/holo_green_dark" />
+        </LinearLayout>
+
+        <!-- transactions -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:textSize="@dimen/text_size"
+                android:text="Umsätze diesen Monat:" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size"
+                android:text="15" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="5dp"
+                android:textSize="@dimen/text_size"
+                android:text="(+ 1.570,83 Euro)"
+                android:textColor="@android:color/holo_green_dark" />
+        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

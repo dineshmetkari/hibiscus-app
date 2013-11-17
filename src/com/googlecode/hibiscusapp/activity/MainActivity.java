@@ -6,9 +6,11 @@ import android.app.LoaderManager;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -24,11 +26,12 @@ import android.widget.Toast;
 import com.googlecode.hibiscusapp.R;
 import com.googlecode.hibiscusapp.database.AccountProvider;
 import com.googlecode.hibiscusapp.database.AccountTable;
-import com.googlecode.hibiscusapp.fragment.ActivitiesFragment;
 import com.googlecode.hibiscusapp.fragment.OverviewFragment;
 import com.googlecode.hibiscusapp.fragment.StatisticsFragment;
+import com.googlecode.hibiscusapp.fragment.TransactionsFragment;
 import com.googlecode.hibiscusapp.menu.DrawerItem;
 import com.googlecode.hibiscusapp.menu.DrawerItemAdapter;
+import com.googlecode.hibiscusapp.services.SynchronizationService;
 import com.googlecode.hibiscusapp.util.Constants;
 
 /**
@@ -88,23 +91,30 @@ public class MainActivity extends ActionBarActivity
         menuItemAdapter = new DrawerItemAdapter(getApplicationContext());
         menuList.setAdapter(menuItemAdapter);
         menuItemAdapter.add(new DrawerItem(Constants.MENU_ITEM_OVERVIEW, R.drawable.ic_menu_overview, R.string.menu_item_overview));
-        menuItemAdapter.add(new DrawerItem(Constants.MENU_ITEM_ACTIVITIES, R.drawable.ic_menu_activities, R.string.menu_item_activities));
+        menuItemAdapter.add(new DrawerItem(Constants.MENU_ITEM_TRANSACTIONS, R.drawable.ic_menu_activities, R.string.menu_item_activities));
         menuItemAdapter.add(new DrawerItem(Constants.MENU_ITEM_STATISTICS, R.drawable.ic_action_statistics, R.string.menu_item_statistics));
         menuItemAdapter.add(new DrawerItem(Constants.MENU_ITEM_SETTINGS, R.drawable.ic_menu_settings, R.string.menu_item_settings));
 
         // create account items
         accountList = (ListView) findViewById(R.id.drawer_accounts_list);
         accountList.setOnItemClickListener(new AccountItemClickListener());
-        accountItemAdapter = new SimpleCursorAdapter(getApplicationContext(), R.layout.account_item, null,
+        accountItemAdapter = new SimpleCursorAdapter(getApplicationContext(), R.layout.menu_account_item, null,
             new String[] {AccountTable.COLUMN_ACCOUNT_NUMBER}, new int[] {R.id.account_item_title}, 0);
         accountList.setAdapter(accountItemAdapter);
 
-
+        // init the account loader
         getLoaderManager().initLoader(0, null, new AccountLoaderCallback());
 
         if (savedInstanceState == null) {
             // set the overview fragment as default
-            selectItem(0);
+            selectItem(1);
+        }
+
+        // load the sync settings from the shared preferences
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean syncActive = sharedPref.getBoolean(getString(R.string.pref_sync_active_key), true);
+        if (syncActive) {
+            SynchronizationService.startService(this);
         }
     }
 
@@ -191,8 +201,8 @@ public class MainActivity extends ActionBarActivity
             case Constants.MENU_ITEM_STATISTICS:
                 fragment = new StatisticsFragment();
                 break;
-            case Constants.MENU_ITEM_ACTIVITIES:
-                fragment = new ActivitiesFragment();
+            case Constants.MENU_ITEM_TRANSACTIONS:
+                fragment = new TransactionsFragment();
                 break;
             case Constants.MENU_ITEM_OVERVIEW:
                 fragment = new OverviewFragment();

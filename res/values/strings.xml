@@ -17,7 +17,7 @@
     <string name="menu_item_statistics">Statistiken</string>
     <string name="menu_item_settings">Einstellungen</string>
     <string name="accounts">Konten</string>
-    <string name="menu_refresh">Ref</string>
+    <string name="menu_refresh">Synchronisieren</string>
 
     <!-- Preferences -->
     <string name="pref_hibiscus_key">pref_hibiscus</string>
@@ -63,5 +63,16 @@
         <item>360</item>
         <item>720</item>
         <item>1440</item>
+    </string-array>
+
+    <string-array name="planets_array">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
     </string-array>
 </resources>

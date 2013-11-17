@@ -3,12 +3,12 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/contentBackgroundColor">
+    android:background="@color/content_background_color">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Statistiken"
-        android:layout_gravity="center" />
+    <Button
+        android:id="@+id/notification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Notification" />
 
 </LinearLayout>

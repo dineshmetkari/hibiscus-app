@@ -20,6 +20,11 @@ public class AccountTable
     public static final String COLUMN_BALANCE = "balance";
     public static final String COLUMN_BALANCE_DATE = "balance_date";
 
+    // helper contant to select all columns of this table
+    public static final String[] COLUMNS_ALL = new String[] {
+        COLUMN_ID, COLUMN_ACCOUNT_NUMBER, COLUMN_ACCOUNT_HOLDER, COLUMN_BALANCE, COLUMN_BALANCE_DATE
+    };
+
     // Database creation SQL statement
     private static final String DATABASE_CREATE = "create table "
         + TABLE_ACCOUNT

@@ -8,7 +8,9 @@
     <FrameLayout
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:padding="@dimen/background_padding"
+        android:background="@color/content_background_color" />
 
     <!-- Include the menu -->
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -17,7 +19,7 @@
         android:layout_width="240dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/drawerBackgroundColor"
+        android:background="@color/drawer_background_color"
         android:paddingTop="@dimen/drawer_padding">
 
         <TextView

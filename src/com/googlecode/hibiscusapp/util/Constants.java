@@ -15,7 +15,9 @@ public final class Constants
 
     /** menu items */
     final public static int MENU_ITEM_OVERVIEW = 1;
-    final public static int MENU_ITEM_ACTIVITIES = 2;
+    final public static int MENU_ITEM_TRANSACTIONS = 2;
     final public static int MENU_ITEM_STATISTICS = 3;
     final public static int MENU_ITEM_SETTINGS = 4;
+
+    final public static String LOG_TAG = "Hibiscus";
 }

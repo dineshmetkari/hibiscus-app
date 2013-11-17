@@ -19,7 +19,7 @@ public class AccountItemAdapter extends ArrayAdapter<AccountItem>
     public View getView(int position, View convertView, ViewGroup parent)
     {
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.account_item, null);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.menu_account_item, null);
         }
 
         AccountItem item = getItem(position);

@@ -4,9 +4,15 @@
     android:versionCode="1"
     android:versionName="1.0">
 
+    <!-- SDK settings -->
     <uses-sdk
         android:minSdkVersion="7"
         android:targetSdkVersion="18" />
+
+    <!-- permissions -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
 
     <application
         android:allowBackup="true"
@@ -22,9 +28,25 @@
         </activity>
         <activity android:name=".activity.SettingsActivity" />
 
+        <!-- content provider -->
         <provider
             android:authorities="com.googlecode.hibiscusapp.accounts.contentprovider"
             android:name=".database.AccountProvider" >
         </provider>
+
+        <!-- services -->
+        <service
+            android:name=".services.SynchronizationService"
+            android:label="SynchronizationService" />
+
+        <!-- broadcast receiver -->
+        <receiver
+            android:name=".services.BootCompletedReceiver"
+            android:label="BootCompletedReceiver">
+
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
     </application>
 </manifest>

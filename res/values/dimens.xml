@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <!-- drawer styles -->
     <dimen name="slidingmenu_offset">60dp</dimen>
     <dimen name="shadow_width">10dp</dimen>
     <dimen name="drawer_padding">15dp</dimen>
@@ -8,5 +8,11 @@
     <dimen name="drawer_divider_height">3px</dimen>
     <dimen name="drawer_accounts_offset">30dp</dimen>
 
-    <integer name="num_cols">1</integer>
+    <!-- general box styles -->
+    <dimen name="background_padding">20dp</dimen>
+    <dimen name="box_padding">24dp</dimen>
+    <dimen name="text_size">16dp</dimen>
+
+    <!-- account item -->
+    <dimen name="acocunt_item_title_size">20dp</dimen>
 </resources>
