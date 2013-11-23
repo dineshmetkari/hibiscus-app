@@ -7,16 +7,19 @@ import android.os.AsyncTask;
 import android.util.Log;
 import com.googlecode.hibiscusapp.database.AccountProvider;
 import com.googlecode.hibiscusapp.database.AccountTable;
+import com.googlecode.hibiscusapp.database.AccountTransactionProvider;
+import com.googlecode.hibiscusapp.database.AccountTransactionTable;
 import com.googlecode.hibiscusapp.model.Account;
+import com.googlecode.hibiscusapp.model.AccountTransaction;
+import com.googlecode.hibiscusapp.model.Recipient;
+import com.googlecode.hibiscusapp.model.TransactionType;
 import com.googlecode.hibiscusapp.util.Constants;
 import org.xmlrpc.android.XMLRPCClient;
 import org.xmlrpc.android.XMLRPCException;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * This class synchronizes
@@ -42,10 +45,14 @@ public class SynchronizationTask extends AsyncTask<Context, Void, Void>
             XMLRPCClient client = createClient(context);
 
             // synchronize bank accounts
+            long start = System.currentTimeMillis();
             synchronizeBankAccounts(client, context);
+            Log.i(Constants.LOG_TAG, String.format("Synchronizing bank accounts finished in %s seconds", (System.currentTimeMillis() - start) / 1000.0));
 
             // synchronize account transactions
-            // TODO: implement
+            start = System.currentTimeMillis();
+            synchronizeAccountTransactions(client, context);
+            Log.i(Constants.LOG_TAG, String.format("Synchronizing account transactions finished in %s seconds", (System.currentTimeMillis() - start) / 1000.0));
         } catch (Exception e) {
             Log.e(Constants.LOG_TAG, "Unable to execute SynchronizationTask", e);
         }
@@ -84,18 +91,7 @@ public class SynchronizationTask extends AsyncTask<Context, Void, Void>
     private void synchronizeBankAccounts(XMLRPCClient client, Context context) throws ParseException, XMLRPCException
     {
         // get all local accounts
-        Cursor accountsCursor = context.getContentResolver().query(
-            AccountProvider.CONTENT_URI,
-            AccountTable.COLUMNS_ALL,
-            "",
-            new String[]{},
-            ""
-        );
-
-        if (accountsCursor == null)
-        {
-            throw new RuntimeException("Unable to access local bank accounts");
-        }
+        Cursor accountsCursor = getAccounts(context);
 
         Map<Integer, Account> accounts = getBankAccountsFromHibiscus(client);
 
@@ -156,6 +152,64 @@ public class SynchronizationTask extends AsyncTask<Context, Void, Void>
     }
 
     /**
+     * This method calls the XMLRPC interface of the hibiscus server to retrieve new account transactions.
+     * For each bank account, a XMLRPC call will be send with the parameters konto_id and id:min.
+     *
+     * @param client the xml rpc client instance
+     */
+    private void synchronizeAccountTransactions(XMLRPCClient client, Context context) throws XMLRPCException, ParseException
+    {
+        Cursor accountsCursor = getAccounts(context);
+
+        while (accountsCursor.moveToNext())
+        {
+            int accountId = accountsCursor.getInt(accountsCursor.getColumnIndex(AccountTable.COLUMN_ID));
+
+            // query the max transaction id for the current account
+
+            int maxId = 0;
+            Cursor cursor = context.getContentResolver().query(
+                AccountTransactionProvider.CONTENT_URI,
+                new String[] {"MAX(" + AccountTransactionTable.COLUMN_ID + ") AS max_id"},
+                AccountTransactionTable.COLUMN_ACCOUNT_ID + "=?",
+                new String[] {String.valueOf(accountId)},
+                ""
+            );
+            if (cursor.moveToNext()) {
+                maxId = cursor.getInt(cursor.getColumnIndexOrThrow("max_id"));
+            }
+
+            // call the xmlrpc interface to retrieve new account transactions
+            List<AccountTransaction> accountTransactions = getAccountTransactionsFromHibiscus(client, accountId, maxId + 1);
+
+            // insert the new account transactions
+            for (AccountTransaction transaction : accountTransactions) {
+                ContentValues cv = new ContentValues();
+                cv.put(AccountTransactionTable.COLUMN_ID, transaction.getId());
+                cv.put(AccountTransactionTable.COLUMN_ACCOUNT_ID, transaction.getAccountId());
+                cv.put(AccountTransactionTable.COLUMN_RECIPIENT_NAME, transaction.getRecipient().getName());
+                cv.put(AccountTransactionTable.COLUMN_RECIPIENT_ACCOUNT_NUMBER, transaction.getRecipient().getAccountNumber());
+                cv.put(AccountTransactionTable.COLUMN_RECIPIENT_BANK_IDENTIFICATION_NUMBER, transaction.getRecipient().getBankIdentificationNumber());
+                cv.put(AccountTransactionTable.COLUMN_TRANSACTION_TYPE, transaction.getTransactionType().toString());
+                cv.put(AccountTransactionTable.COLUMN_VALUE, transaction.getValue());
+                cv.put(AccountTransactionTable.COLUMN_DATE, (int)(transaction.getDate().getTime() / 1000));
+                cv.put(AccountTransactionTable.COLUMN_REFERENCE, transaction.getReference());
+                cv.put(AccountTransactionTable.COLUMN_BALANCE, transaction.getBalance());
+                cv.put(AccountTransactionTable.COLUMN_COMMENT, transaction.getComment());
+
+                context.getContentResolver().insert(
+                    AccountTransactionProvider.CONTENT_URI,
+                    cv
+                );
+            }
+
+            if (accountTransactions.size() > 0) {
+                Log.d(Constants.LOG_TAG, String.format("Added %s new account transactions for account %s", accountTransactions.size(), accountId));
+            }
+        }
+    }
+
+    /**
      * This method returns a list of all bank accounts that are available in the hibiscus server.
      * The list of bank accounts is retrieved via a XMLRPC call.
      *
@@ -176,7 +230,7 @@ public class SynchronizationTask extends AsyncTask<Context, Void, Void>
 
             int id = Integer.parseInt(String.valueOf(accountData.get("id")));
             String accountHolder = String.valueOf(accountData.get("name"));
-            int accountNumber = Integer.parseInt(String.valueOf(accountData.get("kontonummer")));
+            String accountNumber = String.valueOf(accountData.get("kontonummer"));
 
             // parse the balance
             String balanceString = String.valueOf(accountData.get("saldo")).replace(',', '.');
@@ -191,5 +245,83 @@ public class SynchronizationTask extends AsyncTask<Context, Void, Void>
         }
 
         return accounts;
+    }
+
+    /**
+     *
+     * @param client
+     * @return
+     * @throws XMLRPCException
+     * @throws ParseException
+     */
+    private List<AccountTransaction> getAccountTransactionsFromHibiscus(XMLRPCClient client, int accountId, int minTransactionId)
+        throws XMLRPCException, ParseException
+    {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        List<AccountTransaction> transactions = new ArrayList<AccountTransaction>();
+
+        Map params = new HashMap();
+        params.put("id:min", minTransactionId);
+        params.put("konto_id", accountId);
+
+        Object[] list = (Object[]) client.call("hibiscus.xmlrpc.umsatz.list", params);
+        for (Object o:list)
+        {
+            Map transactionData = (Map) o;
+
+            int id = Integer.parseInt(String.valueOf(transactionData.get("id")));
+            String recipientName = String.valueOf(transactionData.get("empfaenger_name"));
+            String recipientAccountNumber = String.valueOf(transactionData.get("empfaenger_konto"));
+            String recipientBankNumber = String.valueOf(transactionData.get("empfaenger_blz"));
+            String transactionType = String.valueOf(transactionData.get("art"));
+
+            // parse the value string
+            String valueString = String.valueOf(transactionData.get("betrag")).replace(',', '.');
+            double value = Double.parseDouble(valueString);
+
+            // parse the transaction date
+            String valueDateString = String.valueOf(transactionData.get("valuta"));
+            Date valueDate = sdf.parse(valueDateString);
+
+            String reference = String.valueOf(transactionData.get("zweck"));
+            String comment = String.valueOf(transactionData.get("kommentar"));
+
+            // parse the balance string
+            String balanceString = String.valueOf(transactionData.get("saldo")).replace(',', '.');
+            double balance = Double.parseDouble(balanceString);
+
+            Recipient recipient = new Recipient(recipientName, recipientAccountNumber, recipientBankNumber);
+
+            AccountTransaction transaction = new AccountTransaction(id, accountId, recipient, TransactionType.OTHERS, value, valueDate, reference, balance, comment);
+            transactions.add(transaction);
+        }
+
+        return transactions;
+    }
+
+    /**
+     * Returns all accounts from the account table.
+     *
+     * @param context the context instance
+     *
+     * @return
+     */
+    private Cursor getAccounts(Context context)
+    {
+        Cursor accountsCursor = context.getContentResolver().query(
+            AccountProvider.CONTENT_URI,
+            AccountTable.COLUMNS_ALL,
+            "",
+            new String[]{},
+            ""
+        );
+
+        if (accountsCursor == null)
+        {
+            throw new RuntimeException("Unable to access local bank accounts");
+        }
+
+        return accountsCursor;
     }
 }

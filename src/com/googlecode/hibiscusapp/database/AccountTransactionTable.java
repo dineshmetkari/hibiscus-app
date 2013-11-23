@@ -13,7 +13,7 @@ import android.util.Log;
 public class AccountTransactionTable
 {
     // Database table
-    public static final String TABLE_TRANSACTION = "account_transaction";
+    public static final String TABLE_ACCOUNT_TRANSACTION = "account_transaction";
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_ACCOUNT_ID = "account_id";
     public static final String COLUMN_RECIPIENT_NAME = "recipient_name";
@@ -29,13 +29,13 @@ public class AccountTransactionTable
 
     // Database creation SQL statement
     private static final String DATABASE_CREATE = "create table "
-        + TABLE_TRANSACTION
+        + TABLE_ACCOUNT_TRANSACTION
         + "("
         + COLUMN_ID + " integer primary key autoincrement, "
         + COLUMN_ACCOUNT_ID + " integer not null, "
         + COLUMN_RECIPIENT_NAME + " text not null, "
-        + COLUMN_RECIPIENT_ACCOUNT_NUMBER + " integer not null, "
-        + COLUMN_RECIPIENT_BANK_IDENTIFICATION_NUMBER + " integer not null, "
+        + COLUMN_RECIPIENT_ACCOUNT_NUMBER + " text not null, "
+        + COLUMN_RECIPIENT_BANK_IDENTIFICATION_NUMBER + " text not null, "
         + COLUMN_TRANSACTION_TYPE + " text not null, "
         + COLUMN_VALUE + " real not null, "
         + COLUMN_DATE + " integer not null, "
@@ -56,7 +56,7 @@ public class AccountTransactionTable
             + oldVersion + " to " + newVersion
             + ", which will destroy all old data!"
         );
-        database.execSQL("DROP TABLE IF EXISTS " + TABLE_TRANSACTION);
+        database.execSQL("DROP TABLE IF EXISTS " + TABLE_ACCOUNT_TRANSACTION);
         onCreate(database);
     }
 }

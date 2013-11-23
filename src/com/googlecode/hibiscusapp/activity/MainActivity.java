@@ -2,10 +2,7 @@ package com.googlecode.hibiscusapp.activity;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.app.LoaderManager;
-import android.content.CursorLoader;
 import android.content.Intent;
-import android.content.Loader;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.database.Cursor;
@@ -14,6 +11,7 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,14 +19,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 import com.googlecode.hibiscusapp.R;
-import com.googlecode.hibiscusapp.database.AccountProvider;
 import com.googlecode.hibiscusapp.database.AccountTable;
 import com.googlecode.hibiscusapp.fragment.OverviewFragment;
 import com.googlecode.hibiscusapp.fragment.StatisticsFragment;
 import com.googlecode.hibiscusapp.fragment.TransactionsFragment;
+import com.googlecode.hibiscusapp.loader.AccountLoaderCallback;
 import com.googlecode.hibiscusapp.menu.DrawerItem;
 import com.googlecode.hibiscusapp.menu.DrawerItemAdapter;
 import com.googlecode.hibiscusapp.services.SynchronizationService;
@@ -103,11 +100,11 @@ public class MainActivity extends ActionBarActivity
         accountList.setAdapter(accountItemAdapter);
 
         // init the account loader
-        getLoaderManager().initLoader(0, null, new AccountLoaderCallback());
+        getLoaderManager().initLoader(0, null, new AccountLoaderCallback(this, accountItemAdapter));
 
         if (savedInstanceState == null) {
             // set the overview fragment as default
-            selectItem(1);
+            selectItem(0);
         }
 
         // load the sync settings from the shared preferences
@@ -164,32 +161,10 @@ public class MainActivity extends ActionBarActivity
     private class AccountItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            //AccountItem item = accountItemAdapter.getItem(position);
-            //Toast.makeText(getApplicationContext(), item.getAccount().getAccountNumber() + " wurde gedrückt!", Toast.LENGTH_LONG).show();
-            //selectItem(position);
-        }
-    }
-
-    private class AccountLoaderCallback implements LoaderManager.LoaderCallbacks<Cursor>
-    {
-        @Override
-        public Loader<Cursor> onCreateLoader(int id, Bundle args)
-        {
-            return new CursorLoader(MainActivity.this, AccountProvider.CONTENT_URI, null, null, null, null);
-        }
-
-        @Override
-        public void onLoadFinished(Loader<Cursor> loader, Cursor cursor)
-        {
-            // set the new cursor in the list adapter
-            accountItemAdapter.swapCursor(cursor);
-        }
-
-        @Override
-        public void onLoaderReset(Loader<Cursor> loader)
-        {
-            // reset the cursor of the list adapter
-            accountItemAdapter.swapCursor(null);
+            // TODO: Intent auf Detailansicht des Kontos
+            Cursor item = (Cursor) accountItemAdapter.getItem(position);
+            Toast.makeText(getApplicationContext(), item.getString(item.getColumnIndexOrThrow(AccountTable.COLUMN_ACCOUNT_NUMBER)) + " wurde gedrückt!", Toast.LENGTH_LONG).show();
+            selectItem(position);
         }
     }
 

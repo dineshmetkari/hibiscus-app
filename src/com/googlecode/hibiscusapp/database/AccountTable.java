@@ -30,7 +30,7 @@ public class AccountTable
         + TABLE_ACCOUNT
         + "("
         + COLUMN_ID + " integer primary key autoincrement, "
-        + COLUMN_ACCOUNT_NUMBER + " integer not null, "
+        + COLUMN_ACCOUNT_NUMBER + " text not null, "
         + COLUMN_ACCOUNT_HOLDER + " text not null, "
         + COLUMN_BALANCE + " real not null, "
         + COLUMN_BALANCE_DATE + " integer not null"

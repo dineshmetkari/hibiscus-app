@@ -11,10 +11,10 @@ public class Recipient
 {
 
     final private String name;
-    final private int accountNumber;
-    final private int bankIdentificationNumber;
+    final private String accountNumber;
+    final private String bankIdentificationNumber;
 
-    public Recipient(String name, int accountNumber, int bankIdentificationNumber)
+    public Recipient(String name, String accountNumber, String bankIdentificationNumber)
     {
         this.name = name;
         this.accountNumber = accountNumber;
@@ -26,12 +26,12 @@ public class Recipient
         return name;
     }
 
-    public int getAccountNumber()
+    public String getAccountNumber()
     {
         return accountNumber;
     }
 
-    public int getBankIdentificationNumber()
+    public String getBankIdentificationNumber()
     {
         return bankIdentificationNumber;
     }

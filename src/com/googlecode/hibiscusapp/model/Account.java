@@ -13,12 +13,12 @@ public class Account
 {
 
     private final int id;
-    private final int accountNumber;
+    private final String accountNumber;
     private final String accountHolder;
     private final double balance;
     private final Date balanceDate;
 
-    public Account(int id, int accountNumber, String accountHolder, double balance, Date balanceDate)
+    public Account(int id, String accountNumber, String accountHolder, double balance, Date balanceDate)
     {
         this.id = id;
         this.accountNumber = accountNumber;
@@ -32,7 +32,7 @@ public class Account
         return id;
     }
 
-    public int getAccountNumber()
+    public String getAccountNumber()
     {
         return accountNumber;
     }

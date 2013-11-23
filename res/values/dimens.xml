@@ -14,5 +14,6 @@
     <dimen name="text_size">16dp</dimen>
 
     <!-- account item -->
-    <dimen name="acocunt_item_title_size">20dp</dimen>
+    <dimen name="overview_account_title_size">20dp</dimen>
+    <dimen name="overview_account_date_size">12dp</dimen>
 </resources>

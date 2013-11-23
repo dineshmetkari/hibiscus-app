@@ -33,20 +33,14 @@
             android:authorities="com.googlecode.hibiscusapp.accounts.contentprovider"
             android:name=".database.AccountProvider" >
         </provider>
+        <provider
+            android:authorities="com.googlecode.hibiscusapp.accounttransactions.contentprovider"
+            android:name=".database.AccountTransactionProvider" >
+        </provider>
 
         <!-- services -->
         <service
             android:name=".services.SynchronizationService"
             android:label="SynchronizationService" />
-
-        <!-- broadcast receiver -->
-        <receiver
-            android:name=".services.BootCompletedReceiver"
-            android:label="BootCompletedReceiver">
-
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
     </application>
 </manifest>
