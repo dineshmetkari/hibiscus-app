@@ -26,6 +26,11 @@ public class AccountTransactionTable
     public static final String COLUMN_BALANCE = "balance";
     public static final String COLUMN_COMMENT = "comment";
 
+    public static final String[] COLUMNS_ALL = new String[] {
+        COLUMN_ID, COLUMN_ACCOUNT_ID, COLUMN_RECIPIENT_NAME, COLUMN_RECIPIENT_ACCOUNT_NUMBER, COLUMN_RECIPIENT_BANK_IDENTIFICATION_NUMBER,
+        COLUMN_TRANSACTION_TYPE, COLUMN_VALUE, COLUMN_DATE, COLUMN_REFERENCE, COLUMN_BALANCE, COLUMN_COMMENT
+    };
+
 
     // Database creation SQL statement
     private static final String DATABASE_CREATE = "create table "

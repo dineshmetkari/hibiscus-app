@@ -9,9 +9,15 @@
     <dimen name="drawer_accounts_offset">30dp</dimen>
 
     <!-- general box styles -->
-    <dimen name="background_padding">20dp</dimen>
+    <dimen name="background_padding">12dp</dimen>
     <dimen name="box_padding">24dp</dimen>
-    <dimen name="text_size">16dp</dimen>
+    <dimen name="box_padding_bottom">10dp</dimen>
+
+    <!-- listview -->
+    <dimen name="listview_divider_height">12dp</dimen>
+
+    <!-- textview -->
+    <dimen name="label_margin">8dp</dimen>
 
     <!-- account item -->
     <dimen name="overview_account_title_size">20dp</dimen>

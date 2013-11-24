@@ -51,4 +51,16 @@ public class Account
     {
         return balanceDate;
     }
+
+    @Override
+    public String toString()
+    {
+        return "Account{" +
+            "id=" + id +
+            ", accountNumber='" + accountNumber + '\'' +
+            ", accountHolder='" + accountHolder + '\'' +
+            ", balance=" + balance +
+            ", balanceDate=" + balanceDate +
+            '}';
+    }
 }

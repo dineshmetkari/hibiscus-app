@@ -18,5 +18,4 @@
     <!-- balance colors -->
     <color name="balance_positive">#009900</color>
     <color name="balance_negative">#CC0000</color>
-    <color name="balance_neutral">#000000</color>
 </resources>
