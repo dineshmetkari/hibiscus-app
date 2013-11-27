@@ -6,7 +6,6 @@ import com.googlecode.hibiscusapp.database.AccountTransactionProvider;
 import com.googlecode.hibiscusapp.database.AccountTransactionTable;
 import com.googlecode.hibiscusapp.model.AccountTransaction;
 import com.googlecode.hibiscusapp.model.Recipient;
-import com.googlecode.hibiscusapp.model.TransactionType;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -69,7 +68,7 @@ public class AccountTransactionDao extends AbstractDao
             String recipientName = cursor.getString(cursor.getColumnIndexOrThrow(AccountTransactionTable.COLUMN_RECIPIENT_NAME));
             String recipientAccountNumber = cursor.getString(cursor.getColumnIndexOrThrow(AccountTransactionTable.COLUMN_RECIPIENT_ACCOUNT_NUMBER));
             String recipientBankNumber = cursor.getString(cursor.getColumnIndexOrThrow(AccountTransactionTable.COLUMN_RECIPIENT_BANK_IDENTIFICATION_NUMBER));
-            String transactionTypeString = cursor.getString(cursor.getColumnIndexOrThrow(AccountTransactionTable.COLUMN_TRANSACTION_TYPE));
+            String transactionType = cursor.getString(cursor.getColumnIndexOrThrow(AccountTransactionTable.COLUMN_TRANSACTION_TYPE));
             double value = cursor.getDouble(cursor.getColumnIndexOrThrow(AccountTransactionTable.COLUMN_VALUE));
             long dateTs = cursor.getLong(cursor.getColumnIndexOrThrow(AccountTransactionTable.COLUMN_DATE));
             String reference = cursor.getString(cursor.getColumnIndexOrThrow(AccountTransactionTable.COLUMN_REFERENCE));
@@ -77,7 +76,6 @@ public class AccountTransactionDao extends AbstractDao
             String comment = cursor.getString(cursor.getColumnIndexOrThrow(AccountTransactionTable.COLUMN_COMMENT));
 
             Recipient recipient = new Recipient(recipientName, recipientAccountNumber, recipientBankNumber);
-            TransactionType transactionType = TransactionType.valueOf(transactionTypeString);
             Date date = new Date(dateTs * 1000);
 
             AccountTransaction transaction = new AccountTransaction(

@@ -65,7 +65,7 @@ public class MainActivity extends ActionBarActivity
 
         // ActionBarDrawerToggle ties together the the proper interactions
         // between the sliding drawer and the action bar app icon
-        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_drawer, R.string.drawer_open,R.string.drawer_close) {
+        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_navigation_drawer, R.string.drawer_open,R.string.drawer_close) {
             public void onDrawerClosed(View view) {
                 getActionBar().setTitle(fragmentTitle);
                 invalidateOptionsMenu();

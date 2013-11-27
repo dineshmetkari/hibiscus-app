@@ -3,11 +3,11 @@ package com.googlecode.hibiscusapp.fragment;
 import android.app.Fragment;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.Toast;
 import com.googlecode.hibiscusapp.R;
 import com.googlecode.hibiscusapp.activity.MainActivity;
+
+import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
 
 /**
  * Package: com.googlecode.hibiscusapp.fragment
@@ -34,6 +36,7 @@ public class StatisticsFragment extends Fragment
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState)
     {
+
         Button b = (Button)getActivity().findViewById(R.id.notification);
         b.setOnClickListener(new View.OnClickListener()
         {
@@ -63,7 +66,7 @@ public class StatisticsFragment extends Fragment
                 PendingIntent resultPendingIntent =
                     stackBuilder.getPendingIntent(
                         0,
-                        PendingIntent.FLAG_UPDATE_CURRENT
+                        FLAG_UPDATE_CURRENT
                     );
                 mBuilder.setContentIntent(resultPendingIntent);
                 NotificationManager mNotificationManager =

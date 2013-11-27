@@ -56,8 +56,8 @@ public class SynchronizationService extends Service
         long intervalMillis = TimeUnit.MINUTES.toMillis(intervalMinutes);
 
         // schedue the synchronization service with the Android AlarmManager service
-        Intent intent = new Intent(context, SynchronizationService.class);
-        PendingIntent pendingIntent = PendingIntent.getService(context, ALARM_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            Intent intent = new Intent(context, SynchronizationService.class);
+        PendingIntent pendingIntent = PendingIntent.getService(context, ALARM_ID, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
         // add the start offset
         Calendar cal = Calendar.getInstance();
@@ -78,7 +78,7 @@ public class SynchronizationService extends Service
      */
     public static void startService(Context context)
     {
-        startService(context, 0);
+        startService(context, 5);
     }
 
     public IBinder onBind(Intent intent)

@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/box_padding"
     android:paddingRight="@dimen/box_padding"
     android:paddingBottom="@dimen/box_padding_bottom"
-    android:clickable="true">
+    android:layout_marginBottom="@dimen/box_divider_height">
 
     <!-- account name -->
     <LinearLayout
@@ -136,7 +136,9 @@
         android:id="@+id/overview_account_transactions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:background="@drawable/pressed_highlight"
+        android:padding="@dimen/textview_padding">
 
         <TextView
             android:layout_width="wrap_content"
@@ -146,5 +148,4 @@
             android:text="Kontoumsätze anzeigen" />
 
     </LinearLayout>
-
 </LinearLayout>

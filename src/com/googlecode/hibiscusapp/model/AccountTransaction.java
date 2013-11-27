@@ -15,7 +15,7 @@ public class AccountTransaction
     private final int id;
     private final int accountId;
     private final Recipient recipient;
-    private final TransactionType transactionType;
+    private final String transactionType;
     private final double value;
     private final Date date;
     private final String reference;
@@ -26,7 +26,7 @@ public class AccountTransaction
         int id,
         int accountId,
         Recipient recipient,
-        TransactionType transactionType,
+        String transactionType,
         double value,
         Date date,
         String reference,
@@ -60,7 +60,7 @@ public class AccountTransaction
         return recipient;
     }
 
-    public TransactionType getTransactionType()
+    public String getTransactionType()
     {
         return transactionType;
     }

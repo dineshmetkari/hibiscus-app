@@ -2,6 +2,7 @@ package com.googlecode.hibiscusapp.fragment;
 
 import android.app.Fragment;
 import android.app.LoaderManager;
+import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
@@ -10,12 +11,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.SimpleCursorAdapter;
-import android.widget.Spinner;
+import android.widget.*;
 import com.googlecode.hibiscusapp.R;
 import com.googlecode.hibiscusapp.database.AccountProvider;
 import com.googlecode.hibiscusapp.database.AccountTable;
+import com.googlecode.hibiscusapp.database.dao.AccountTransactionDao;
+import com.googlecode.hibiscusapp.model.AccountTransaction;
+import com.googlecode.hibiscusapp.util.UiUtil;
+
+import java.text.DateFormat;
+import java.util.List;
 
 /**
  * Package: com.googlecode.hibiscusapp.fragment
@@ -31,7 +36,24 @@ public class TransactionsFragment extends Fragment implements AdapterView.OnItem
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.transactions, container, false);
+        View view = inflater.inflate(R.layout.transactions, container, false);
+
+        // init the transactions
+        AccountTransactionDao accountTransactionDao = new AccountTransactionDao(getActivity());
+        List<AccountTransaction> transactions = accountTransactionDao.getAccountTransactions(2, 0, Long.MAX_VALUE);
+        if (transactions.size() > 25) {
+            transactions = transactions.subList(0, 25);
+        }
+
+        LinearLayout listView = (LinearLayout) view.findViewById(R.id.transactions_list);
+
+        for (AccountTransaction item : transactions) {
+            View itemView = createAccountTransactionItemView(item, container);
+
+            listView.addView(itemView);
+        }
+
+        return view;
     }
 
     @Override
@@ -42,18 +64,44 @@ public class TransactionsFragment extends Fragment implements AdapterView.OnItem
 
         Spinner spinner = (Spinner) view.findViewById(R.id.transactions_accounts_spinner);
 
-        accountItemAdapter = new SimpleCursorAdapter(getActivity(), android.R.layout.simple_spinner_item, null,
-            new String[] {AccountTable.COLUMN_ACCOUNT_NUMBER}, new int[] {android.R.id.text1}, 0);
+        accountItemAdapter = new SimpleCursorAdapter(
+            getActivity(),
+            android.R.layout.simple_spinner_item,
+            null,
+            new String[]{AccountTable.COLUMN_ACCOUNT_NUMBER},
+            new int[]{android.R.id.text1},
+            0
+        );
         accountItemAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(accountItemAdapter);
         spinner.setOnItemSelectedListener(this);
+    }
 
+    private View createAccountTransactionItemView(AccountTransaction item, ViewGroup container)
+    {
+        LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View rowView = inflater.inflate(R.layout.transaction_item, container, false);
+
+        // format the date
+        TextView transactionDate = (TextView) rowView.findViewById(R.id.transaction_item_date);
+        DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(getActivity());
+        transactionDate.setText(dateFormat.format(item.getDate()));
+
+        // set the transaction reference
+        TextView transactionReference = (TextView) rowView.findViewById(R.id.transaction_item_reference);
+        transactionReference.setText(item.getReference());
+
+        // set the transaction value
+        TextView transactionValue = (TextView) rowView.findViewById(R.id.transaction_item_value);
+        UiUtil.setCurrencyValueAndTextColor(getActivity(), transactionValue, item.getValue());
+
+        return rowView;
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
     {
-        Cursor item = (Cursor) accountItemAdapter.getItem(position);
+        Cursor item = (Cursor)accountItemAdapter.getItem(position);
         Log.d("DEV", item.getString(item.getColumnIndex(AccountTable.COLUMN_ACCOUNT_NUMBER)));
     }
 

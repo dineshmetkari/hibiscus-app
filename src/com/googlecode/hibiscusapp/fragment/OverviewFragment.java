@@ -10,9 +10,11 @@ import android.widget.*;
 import com.googlecode.hibiscusapp.R;
 import com.googlecode.hibiscusapp.database.dao.AccountDao;
 import com.googlecode.hibiscusapp.model.AccountOverview;
+import com.googlecode.hibiscusapp.util.UiUtil;
 
 import java.text.DateFormat;
-import java.text.NumberFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -24,21 +26,10 @@ import java.util.List;
  */
 public class OverviewFragment extends Fragment
 {
-    private ListView accountList;
-    private AccountOverviewAdapter accountOverviewAdapter;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        super.onCreateView(inflater, container, savedInstanceState);
-
-        // inflate the overview layout
-        View view = inflater.inflate(R.layout.overview, container, false);
-
-        // get the account list
-        accountList = (ListView)view.findViewById(R.id.overview_accounts_list);
-
-        return view;
+        return inflater.inflate(R.layout.overview, container, false);
     }
 
     @Override
@@ -46,49 +37,77 @@ public class OverviewFragment extends Fragment
     {
         super.onStart();
 
-        // get the overview data
+        updateAccountListAndSummary();
+    }
+
+    private void updateAccountListAndSummary()
+    {
+        View view = getView();
+
+        // render the overview data
         AccountDao accountDao = new AccountDao(getActivity());
         List<AccountOverview> accountOverviews = accountDao.getAccountOverviews();
 
-        accountOverviewAdapter = new AccountOverviewAdapter(getActivity(), accountOverviews);
-        accountList.setAdapter(accountOverviewAdapter);
+        ListView accountList = (ListView) view.findViewById(R.id.overview_accounts_list);
+        accountList.setAdapter(new AccountOverviewArrayAdapter(getActivity(), accountOverviews));
+
+        // update the summary
+        double balance = 0.0;
+        double transactionBalance = 0.0;
+        for (AccountOverview item : accountOverviews) {
+            balance += item.getAccount().getBalance();
+            transactionBalance += item.getTransactionBalance();
+        }
+
+        TextView balanceSummary = (TextView) view.findViewById(R.id.overview_account_summary_balance);
+        UiUtil.setCurrencyValueAndTextColor(getActivity(), balanceSummary, balance);
+
+        TextView transactionSummary = (TextView) view.findViewById(R.id.overview_account_summary_transaction_balance);
+        UiUtil.setCurrencyValueAndTextColor(getActivity(), transactionSummary, transactionBalance);
+
+        // update the month name
+        String[] months = getResources().getStringArray(R.array.months);
+        TextView monthTextView = (TextView) view.findViewById(R.id.overview_summary_month);
+        Calendar cal = new GregorianCalendar();
+        int currentMonth = cal.get(Calendar.MONTH);
+        monthTextView.setText(months[currentMonth]);
     }
 
-    private class AccountOverviewAdapter extends ArrayAdapter<AccountOverview>
+    private class AccountOverviewArrayAdapter extends ArrayAdapter<AccountOverview>
     {
-        private AccountOverviewAdapter(Context context, List<AccountOverview> items)
+        private AccountOverviewArrayAdapter(Context context, List<AccountOverview> objects)
         {
-            super(context, R.layout.overview_account, items);
+            super(context, R.layout.overview_account, objects);
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent)
         {
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View rowView = inflater.inflate(R.layout.overview_account, parent, false);
+            View rowView = inflater.inflate(R.layout.overview_account, null, false);
 
-            final AccountOverview accountOverview = getItem(position);
+            final AccountOverview item = getItem(position);
 
             // set the account number
             TextView accountNumber = (TextView) rowView.findViewById(R.id.overview_account_number);
-            accountNumber.setText(accountOverview.getAccount().getAccountNumber());
+            accountNumber.setText(item.getAccount().getAccountNumber());
 
             // set the balance date
             DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(getContext());
             TextView accountDate = (TextView) rowView.findViewById(R.id.overview_account_date);
-            accountDate.setText(dateFormat.format(accountOverview.getAccount().getBalanceDate()));
+            accountDate.setText(dateFormat.format(item.getAccount().getBalanceDate()));
 
             // set the balance
             TextView balance = (TextView) rowView.findViewById(R.id.overview_account_balance);
-            setCurrencyValueAndTextColor(balance, accountOverview.getAccount().getBalance());
+            UiUtil.setCurrencyValueAndTextColor(getContext(), balance, item.getAccount().getBalance());
 
             // set the transaction balance
             TextView transactionBalance = (TextView) rowView.findViewById(R.id.overview_account_transaction_balance);
-            setCurrencyValueAndTextColor(transactionBalance, accountOverview.getTransactionBalance());
+            UiUtil.setCurrencyValueAndTextColor(getContext(), transactionBalance, item.getTransactionBalance());
             TextView transactionReceipts = (TextView) rowView.findViewById(R.id.overview_account_receipts);
-            setCurrencyValueAndTextColor(transactionReceipts, accountOverview.getReceipts());
+            UiUtil.setCurrencyValueAndTextColor(getContext(), transactionReceipts, item.getReceipts());
             TextView transactionExpenses = (TextView) rowView.findViewById(R.id.overview_account_expenses);
-            setCurrencyValueAndTextColor(transactionExpenses, accountOverview.getExpenses());
+            UiUtil.setCurrencyValueAndTextColor(getContext(), transactionExpenses, item.getExpenses());
 
             // set the onclicklistener on the account transactions button
             LinearLayout accountTransactions = (LinearLayout) rowView.findViewById(R.id.overview_account_transactions);
@@ -98,54 +117,16 @@ public class OverviewFragment extends Fragment
                 public void onClick(View v)
                 {
                     // show the transactions fragment and preselect the current account
-                    int accountId = accountOverview.getAccount().getId();
+                    int accountId = item.getAccount().getId();
 
-                    Toast.makeText(getContext(), "Konto " + accountId + " gedrückt.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Konto " + item.getAccount().getAccountNumber() + " gedrückt.", Toast.LENGTH_SHORT).show();
 
                     // TODO: wechsel zum Transactions fragment implementieren
                 }
             });
 
             return rowView;
-        }
 
-        /**
-         * This method sets the text color of a TextView instance.
-         * If the value is zero, the text color will be set to the default color,
-         * If the value is negative, the text color will be red.
-         * If the value if positive, the text color will be green
-         *
-         * @param view the text view instance
-         * @param value the value
-         */
-        private void setTextColor(TextView view, double value)
-        {
-            int color = 0;
-            if (value == 0.0) {
-                // set the default TextView color
-                color = new TextView(getContext()).getCurrentTextColor();
-            } else if (value < 0) {
-                color = getResources().getColor(R.color.balance_negative);
-            } else if (value > 0) {
-                color = getResources().getColor(R.color.balance_positive);
-            }
-
-            view.setTextColor(color);
-        }
-
-        /**
-         * This method sets the value and text color of a currency TextView.
-         *
-         * @param view the text view instance
-         * @param value the value
-         */
-        private void setCurrencyValueAndTextColor(TextView view, double value)
-        {
-            NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
-            view.setText(numberFormat.format(value));
-
-            setTextColor(view, value);
         }
     }
-
 }

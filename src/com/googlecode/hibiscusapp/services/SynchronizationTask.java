@@ -12,7 +12,6 @@ import com.googlecode.hibiscusapp.database.AccountTransactionTable;
 import com.googlecode.hibiscusapp.model.Account;
 import com.googlecode.hibiscusapp.model.AccountTransaction;
 import com.googlecode.hibiscusapp.model.Recipient;
-import com.googlecode.hibiscusapp.model.TransactionType;
 import com.googlecode.hibiscusapp.util.Constants;
 import org.xmlrpc.android.XMLRPCClient;
 import org.xmlrpc.android.XMLRPCException;
@@ -38,6 +37,7 @@ public class SynchronizationTask extends AsyncTask<Context, Void, Void>
         if (params.length == 0) {
             throw new IllegalArgumentException("you need to provide at least one context");
         }
+        Log.d(Constants.LOG_TAG, "STARTING SERVICE");
 
         Context context = params[0];
 
@@ -161,8 +161,7 @@ public class SynchronizationTask extends AsyncTask<Context, Void, Void>
     {
         Cursor accountsCursor = getAccounts(context);
 
-        while (accountsCursor.moveToNext())
-        {
+        while (accountsCursor.moveToNext()) {
             int accountId = accountsCursor.getInt(accountsCursor.getColumnIndex(AccountTable.COLUMN_ID));
 
             // query the max transaction id for the current account
@@ -190,7 +189,7 @@ public class SynchronizationTask extends AsyncTask<Context, Void, Void>
                 cv.put(AccountTransactionTable.COLUMN_RECIPIENT_NAME, transaction.getRecipient().getName());
                 cv.put(AccountTransactionTable.COLUMN_RECIPIENT_ACCOUNT_NUMBER, transaction.getRecipient().getAccountNumber());
                 cv.put(AccountTransactionTable.COLUMN_RECIPIENT_BANK_IDENTIFICATION_NUMBER, transaction.getRecipient().getBankIdentificationNumber());
-                cv.put(AccountTransactionTable.COLUMN_TRANSACTION_TYPE, transaction.getTransactionType().toString());
+                cv.put(AccountTransactionTable.COLUMN_TRANSACTION_TYPE, transaction.getTransactionType());
                 cv.put(AccountTransactionTable.COLUMN_VALUE, transaction.getValue());
                 cv.put(AccountTransactionTable.COLUMN_DATE, (int)(transaction.getDate().getTime() / 1000));
                 cv.put(AccountTransactionTable.COLUMN_REFERENCE, transaction.getReference());
@@ -224,8 +223,7 @@ public class SynchronizationTask extends AsyncTask<Context, Void, Void>
         Map<Integer, Account> accounts = new HashMap<Integer, Account>();
 
         Object[] list = (Object[]) client.call("hibiscus.xmlrpc.konto.find");
-        for (Object o:list)
-        {
+        for (Object o:list) {
             Map accountData = (Map) o;
 
             int id = Integer.parseInt(String.valueOf(accountData.get("id")));
@@ -266,8 +264,7 @@ public class SynchronizationTask extends AsyncTask<Context, Void, Void>
         params.put("konto_id", accountId);
 
         Object[] list = (Object[]) client.call("hibiscus.xmlrpc.umsatz.list", params);
-        for (Object o:list)
-        {
+        for (Object o:list) {
             Map transactionData = (Map) o;
 
             int id = Integer.parseInt(String.valueOf(transactionData.get("id")));
@@ -293,7 +290,7 @@ public class SynchronizationTask extends AsyncTask<Context, Void, Void>
 
             Recipient recipient = new Recipient(recipientName, recipientAccountNumber, recipientBankNumber);
 
-            AccountTransaction transaction = new AccountTransaction(id, accountId, recipient, TransactionType.OTHERS, value, valueDate, reference, balance, comment);
+            AccountTransaction transaction = new AccountTransaction(id, accountId, recipient, transactionType, value, valueDate, reference, balance, comment);
             transactions.add(transaction);
         }
 
@@ -317,8 +314,7 @@ public class SynchronizationTask extends AsyncTask<Context, Void, Void>
             ""
         );
 
-        if (accountsCursor == null)
-        {
+        if (accountsCursor == null) {
             throw new RuntimeException("Unable to access local bank accounts");
         }
 
