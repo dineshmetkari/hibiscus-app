@@ -47,7 +47,7 @@ public class StatisticsFragment extends Fragment
 
                 NotificationCompat.Builder mBuilder =
                     new NotificationCompat.Builder(getActivity())
-                        .setSmallIcon(R.drawable.ic_menu_logo)
+                        .setSmallIcon(R.drawable.ic_notification)
                         .setContentTitle("My notification")
                         .setContentText("Hello World!");
 

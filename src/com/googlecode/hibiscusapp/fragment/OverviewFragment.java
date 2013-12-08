@@ -1,5 +1,7 @@
 package com.googlecode.hibiscusapp.fragment;
 
+import android.app.ActionBar;
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
@@ -26,10 +28,21 @@ import java.util.List;
  */
 public class OverviewFragment extends Fragment
 {
+    private OnAccountSelectedCallback accountSelectedCallback;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         return inflater.inflate(R.layout.overview, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState)
+    {
+        super.onViewCreated(view, savedInstanceState);
+
+        final ActionBar actionBar = getActivity().getActionBar();
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
     }
 
     @Override
@@ -38,6 +51,19 @@ public class OverviewFragment extends Fragment
         super.onStart();
 
         updateAccountListAndSummary();
+    }
+
+    @Override
+    public void onAttach(Activity activity)
+    {
+        super.onAttach(activity);
+
+        // make sure, that the containing activity implements the callback interface
+        try {
+            accountSelectedCallback = (OnAccountSelectedCallback) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity + " must implement OnAccountSelectedCallback");
+        }
     }
 
     private void updateAccountListAndSummary()
@@ -118,15 +144,22 @@ public class OverviewFragment extends Fragment
                 {
                     // show the transactions fragment and preselect the current account
                     int accountId = item.getAccount().getId();
-
-                    Toast.makeText(getActivity(), "Konto " + item.getAccount().getAccountNumber() + " gedrückt.", Toast.LENGTH_SHORT).show();
-
-                    // TODO: wechsel zum Transactions fragment implementieren
+                    accountSelectedCallback.accountTransactionsSelected(accountId);
                 }
             });
 
             return rowView;
 
         }
+    }
+
+    public static interface OnAccountSelectedCallback
+    {
+        /**
+         * This method is called when presses the "show account transactions" button.
+         *
+         * @param accountId
+         */
+        public void accountTransactionsSelected(int accountId);
     }
 }

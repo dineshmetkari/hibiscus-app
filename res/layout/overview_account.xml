@@ -41,7 +41,7 @@
     </LinearLayout>
 
     <View
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/drawer_divider_height"
         android:background="@color/divider_color"
         android:layout_marginBottom="@dimen/box_padding_bottom" />

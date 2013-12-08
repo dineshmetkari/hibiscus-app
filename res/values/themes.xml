@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="HibicusApp.LightTheme" parent="Theme.AppCompat.Light">
-        <item name="android:actionBarStyle">@style/HibicusApp.LightTheme.ActionBarStyle</item>
+    <style name="HibicusApp.Theme" parent="Theme.AppCompat">
+        <item name="android:actionBarStyle">@style/HibicusApp.Theme.ActionBarStyle</item>
     </style>
 </resources>

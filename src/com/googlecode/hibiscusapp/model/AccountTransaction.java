@@ -89,4 +89,20 @@ public class AccountTransaction
     {
         return comment;
     }
+
+    @Override
+    public String toString()
+    {
+        return "AccountTransaction{" +
+            "id=" + id +
+            ", accountId=" + accountId +
+            ", recipient=" + recipient +
+            ", transactionType='" + transactionType + '\'' +
+            ", value=" + value +
+            ", date=" + date +
+            ", reference='" + reference + '\'' +
+            ", balance=" + balance +
+            ", comment='" + comment + '\'' +
+            '}';
+    }
 }

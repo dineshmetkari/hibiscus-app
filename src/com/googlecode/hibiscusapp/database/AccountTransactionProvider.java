@@ -187,7 +187,9 @@ public class AccountTransactionProvider extends ContentProvider
             AccountTransactionTable.COLUMN_REFERENCE,
             AccountTransactionTable.COLUMN_TRANSACTION_TYPE,
             AccountTransactionTable.COLUMN_VALUE,
-            "MAX(_id) AS max_id",
+            "MAX(" + AccountTransactionTable.COLUMN_ID + ") AS max_id",
+            "MAX(" + AccountTransactionTable.COLUMN_DATE + ") AS max_date",
+            "MIN(" + AccountTransactionTable.COLUMN_DATE + ") AS min_date",
         };
 
         if (projection != null) {

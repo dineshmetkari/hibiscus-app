@@ -2,13 +2,11 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android" android:exitFadeDuration="@android:integer/config_mediumAnimTime">
     <item android:state_pressed="true">
         <shape>
-            <solid
-                android:color="@color/highlight_color" />
+            <solid android:color="@color/highlight_color" />
             <stroke
                 android:width="@dimen/highlight_border_width"
                 android:color="@color/highlight_border_color" />
-            <corners
-                android:radius="@dimen/highlight_corner_radius" />
+            <corners android:radius="@dimen/highlight_corner_radius" />
         </shape>
     </item>
 </selector>

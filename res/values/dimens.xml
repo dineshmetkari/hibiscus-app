@@ -10,7 +10,8 @@
 
     <!-- general box styles -->
     <dimen name="background_padding">12dp</dimen>
-    <dimen name="box_padding">24dp</dimen>
+    <dimen name="box_padding">20dp</dimen>
+    <dimen name="box_padding_small">12dp</dimen>
     <dimen name="box_padding_bottom">10dp</dimen>
 
     <!-- highlight styles -->
@@ -25,7 +26,10 @@
     <dimen name="label_margin">8dp</dimen>
     <dimen name="textview_padding">3dp</dimen>
 
-    <!-- account item -->
+    <!-- text sizes-->
     <dimen name="overview_account_title_size">20dp</dimen>
+    <dimen name="transaction_title_size">20dp</dimen>
+    <dimen name="transaction_details_header_size">20dp</dimen>
+    <dimen name="transaction_details_date_size">12dp</dimen>
     <dimen name="overview_account_date_size">12dp</dimen>
 </resources>

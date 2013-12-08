@@ -3,7 +3,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/pressed_highlight"
+    android:clickable="true">
 
     <TextView
         android:id="@+id/transaction_item_date"
@@ -13,13 +15,28 @@
         android:layout_marginRight="@dimen/label_margin"
         android:text="12.12.2013" />
 
-    <TextView
-        android:id="@+id/transaction_item_reference"
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_marginRight="@dimen/label_margin"
-        android:text="Einkauf im Laden" />
+        android:layout_marginRight="@dimen/label_margin">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/transaction_item_type"
+            android:text="Onlineüberweisung"
+            android:textAllCaps="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/transaction_item_reference"
+            android:text="Einkauf im Supermarkt"
+            android:maxLines="2" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/transaction_item_value"

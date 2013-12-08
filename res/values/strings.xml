@@ -9,6 +9,7 @@
     <!-- Titles -->
     <string name="title_overview">Kontenübersicht</string>
     <string name="title_settings">Einstellungen</string>
+    <string name="title_transaction_details">Details zur Transaktion</string>
 
     <!-- Menu labels -->
     <string name="menu">Menü</string>
@@ -37,7 +38,6 @@
     <string name="pref_hibiscus_password">Passwort</string>
     <string name="pref_hibiscus_password_key">pref_hibiscus_password</string>
     <string name="pref_hibiscus_password_summary">Masterpasswort des Hibiscus Plugins</string>
-
     <string name="pref_sync_key">pref_sync</string>
     <string name="pref_sync_title">Synchronisierung</string>
     <string name="pref_sync_active_key">pref_sync_active</string>
@@ -64,6 +64,13 @@
         <item>720</item>
         <item>1440</item>
     </string-array>
+
+    <string name="transaction_details_value">Betrag</string>
+    <string name="transaction_details_name">Name</string>
+    <string name="transaction_details_account_number">Kontonummer</string>
+    <string name="transaction_details_bank_identifier">Bankleitzahl</string>
+    <string name="transaction_details_reference">Verwendungszweck</string>
+
 
     <!-- month names -->
     <string-array name="months">
