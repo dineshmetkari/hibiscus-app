@@ -6,23 +6,21 @@ import android.app.Fragment;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 import com.googlecode.hibiscusapp.R;
 import com.googlecode.hibiscusapp.database.AccountTable;
 import com.googlecode.hibiscusapp.database.dao.AccountTransactionDao;
 import com.googlecode.hibiscusapp.model.AccountTransaction;
-import com.googlecode.hibiscusapp.util.Constants;
+import com.googlecode.hibiscusapp.model.MonthlyTransactionBalance;
 import com.googlecode.hibiscusapp.util.UiUtil;
 
 import java.text.DateFormat;
-import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -51,21 +49,12 @@ public class TransactionsFragment extends Fragment implements ActionBar.OnNaviga
     {
         // init the transactions
         AccountTransactionDao accountTransactionDao = new AccountTransactionDao(getActivity());
-        List<AccountTransaction> transactions = accountTransactionDao.getAccountTransactions(2, 0, Long.MAX_VALUE);
-        if (transactions.size() > 25) {
-            transactions = transactions.subList(0, 25);
-        }
 
-        LinearLayout transactionList = (LinearLayout) view.findViewById(R.id.transactions_list);
+        List<MonthlyTransactionBalance> transactionBalances = accountTransactionDao.getMonthlyTransactionBalances(0);
 
-        for (AccountTransaction item : transactions) {
-            View itemView = createAccountTransactionItemView(item);
-            transactionList.addView(itemView);
-        }
-
-        //
-        long[] minMax = accountTransactionDao.getMinMaxTimestamp();
-        Log.d(Constants.LOG_TAG, Arrays.toString(minMax));
+        ArrayAdapter<MonthlyTransactionBalance> adapter = new MonthyTransactionBalancesAdapter(getActivity(), transactionBalances);
+        ListView listView = (ListView) view.findViewById(R.id.transactions_monthly_list);
+        listView.setAdapter(adapter);
     }
 
     @Override
@@ -128,5 +117,69 @@ public class TransactionsFragment extends Fragment implements ActionBar.OnNaviga
     public static interface OnTransactionSelectedCallback
     {
         public void onTransactionSelected(int transactionId);
+    }
+
+    private class MonthyTransactionBalancesAdapter extends ArrayAdapter<MonthlyTransactionBalance>
+    {
+        private String[] monthNames;
+
+        private MonthyTransactionBalancesAdapter(Context context, List<MonthlyTransactionBalance> objects)
+        {
+            super(context, R.layout.transactions_monthly_item, objects);
+
+            monthNames = context.getResources().getStringArray(R.array.months);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent)
+        {
+            LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View rowView = inflater.inflate(R.layout.transactions_monthly_item, parent, false);
+
+            final MonthlyTransactionBalance item = getItem(position);
+
+            // set the month name and year
+            TextView monthView = (TextView) rowView.findViewById(R.id.transactions_monthly_item_month);
+            final Date monthDate = item.getMonth();
+            Calendar calendar = new GregorianCalendar(monthDate.getYear() + 1900, monthDate.getMonth() - 1, 1);
+            monthView.setText(monthNames[calendar.get(Calendar.MONTH)] + " " + calendar.get(Calendar.YEAR));
+
+            // set the transaction balance
+            TextView balanceView = (TextView) rowView.findViewById(R.id.transactions_monthly_item_balance);
+            UiUtil.setCurrencyValueAndTextColor(getContext(), balanceView, item.getTransactionBalance());
+
+            // add the onclick listener, that shows the transactions of the selected month
+            LinearLayout firstRow = (LinearLayout) rowView.findViewById(R.id.transactions_list_trigger);
+            final LinearLayout transactionsList = (LinearLayout) rowView.findViewById(R.id.transactions_list);
+            firstRow.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    if (transactionsList.getVisibility() == View.VISIBLE) {
+                        transactionsList.removeAllViews();
+                        transactionsList.setVisibility(View.GONE);
+                    } else {
+                        // get the account transactions of the selected month
+                        Calendar cal = new GregorianCalendar(monthDate.getYear() + 1900, monthDate.getMonth() - 1, 1, 0, 0, 0);
+                        long tsFrom = cal.getTimeInMillis() / 1000;
+                        cal.add(Calendar.MONTH, 1);
+                        long tsTo = cal.getTimeInMillis() / 1000;
+
+                        AccountTransactionDao dao = new AccountTransactionDao(getContext());
+                        List<AccountTransaction> transactions = dao.getAccountTransactions(0, tsFrom, tsTo);
+
+                        for (AccountTransaction transaction : transactions) {
+                            View itemView = createAccountTransactionItemView(transaction);
+                            transactionsList.addView(itemView);
+                        }
+
+                        transactionsList.setVisibility(View.VISIBLE);
+                    }
+                }
+            });
+
+            return rowView;
+        }
     }
 }
