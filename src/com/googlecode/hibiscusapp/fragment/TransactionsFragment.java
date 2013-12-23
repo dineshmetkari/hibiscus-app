@@ -141,7 +141,7 @@ public class TransactionsFragment extends Fragment implements ActionBar.OnNaviga
             // set the month name and year
             TextView monthView = (TextView) rowView.findViewById(R.id.transactions_monthly_item_month);
             final Date monthDate = item.getMonth();
-            Calendar calendar = new GregorianCalendar(monthDate.getYear() + 1900, monthDate.getMonth() - 1, 1);
+            Calendar calendar = new GregorianCalendar(monthDate.getYear() + 1900, monthDate.getMonth(), 1);
             monthView.setText(monthNames[calendar.get(Calendar.MONTH)] + " " + calendar.get(Calendar.YEAR));
 
             // set the transaction balance
@@ -161,7 +161,7 @@ public class TransactionsFragment extends Fragment implements ActionBar.OnNaviga
                         transactionsList.setVisibility(View.GONE);
                     } else {
                         // get the account transactions of the selected month
-                        Calendar cal = new GregorianCalendar(monthDate.getYear() + 1900, monthDate.getMonth() - 1, 1, 0, 0, 0);
+                        Calendar cal = new GregorianCalendar(monthDate.getYear() + 1900, monthDate.getMonth(), 1, 0, 0, 0);
                         long tsFrom = cal.getTimeInMillis() / 1000;
                         cal.add(Calendar.MONTH, 1);
                         long tsTo = cal.getTimeInMillis() / 1000;

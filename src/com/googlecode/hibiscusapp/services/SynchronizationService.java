@@ -45,7 +45,7 @@ public class SynchronizationService extends Service
      * @param context the context
      * @param offsetInSeconds the offset in seconds
      */
-    public static void startService(Context context, long offsetInSeconds)
+    public static void startService(final Context context, long offsetInSeconds)
     {
         // TODO: prüfen ob der alarm schon gesetzt ist, ist vielleicht durch FLAG_UPDATE_CURRENT schon gegeben
         // http://stackoverflow.com/questions/4556670/how-to-check-if-alarmmamager-already-has-an-alarm-set
@@ -56,8 +56,8 @@ public class SynchronizationService extends Service
         long intervalMillis = TimeUnit.MINUTES.toMillis(intervalMinutes);
 
         // schedue the synchronization service with the Android AlarmManager service
-            Intent intent = new Intent(context, SynchronizationService.class);
-        PendingIntent pendingIntent = PendingIntent.getService(context, ALARM_ID, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        Intent intent = new Intent(context, SynchronizationService.class);
+        PendingIntent pendingIntent = PendingIntent.getService(context, ALARM_ID, intent, 0);
 
         // add the start offset
         Calendar cal = Calendar.getInstance();
@@ -72,7 +72,7 @@ public class SynchronizationService extends Service
 
     /**
      * Calls the start {@link SynchronizationService#startService(Context, long)} method
-     * with an offset of 0 seconds.
+     * with an offset of 0 seconds.  l
      *
      * @param context the context
      */
