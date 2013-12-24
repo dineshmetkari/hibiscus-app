@@ -19,4 +19,9 @@
     <!-- balance colors -->
     <color name="balance_positive">#009900</color>
     <color name="balance_negative">#CC0000</color>
+
+    <!-- tag colors -->
+    <color name="tag_background">#F4F4F4</color>
+    <color name="tag_text_color">#9F9F9F</color>
+    <color name="tag_border_color">#425FAA</color>
 </resources>

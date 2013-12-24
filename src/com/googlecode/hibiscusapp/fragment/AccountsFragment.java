@@ -26,14 +26,14 @@ import java.util.List;
  *
  * @author eike
  */
-public class OverviewFragment extends Fragment
+public class AccountsFragment extends Fragment
 {
     private OnAccountSelectedCallback accountSelectedCallback;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.overview, container, false);
+        return inflater.inflate(R.layout.accounts, container, false);
     }
 
     @Override
@@ -76,27 +76,6 @@ public class OverviewFragment extends Fragment
 
         ListView accountList = (ListView) view.findViewById(R.id.overview_accounts_list);
         accountList.setAdapter(new AccountOverviewArrayAdapter(getActivity(), accountOverviews));
-
-        // update the summary
-        double balance = 0.0;
-        double transactionBalance = 0.0;
-        for (AccountOverview item : accountOverviews) {
-            balance += item.getAccount().getBalance();
-            transactionBalance += item.getTransactionBalance();
-        }
-
-        TextView balanceSummary = (TextView) view.findViewById(R.id.overview_account_summary_balance);
-        UiUtil.setCurrencyValueAndTextColor(getActivity(), balanceSummary, balance);
-
-        TextView transactionSummary = (TextView) view.findViewById(R.id.overview_account_summary_transaction_balance);
-        UiUtil.setCurrencyValueAndTextColor(getActivity(), transactionSummary, transactionBalance);
-
-        // update the month name
-        String[] months = getResources().getStringArray(R.array.months);
-        TextView monthTextView = (TextView) view.findViewById(R.id.overview_summary_month);
-        Calendar cal = new GregorianCalendar();
-        int currentMonth = cal.get(Calendar.MONTH);
-        monthTextView.setText(months[currentMonth]);
     }
 
     private class AccountOverviewArrayAdapter extends ArrayAdapter<AccountOverview>
@@ -156,7 +135,7 @@ public class OverviewFragment extends Fragment
     public static interface OnAccountSelectedCallback
     {
         /**
-         * This method is called when presses the "show account transactions" button.
+         * This method is called when the user presses the "show account transactions" button.
          *
          * @param accountId
          */

@@ -21,7 +21,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 import com.googlecode.hibiscusapp.R;
 import com.googlecode.hibiscusapp.database.AccountTable;
-import com.googlecode.hibiscusapp.fragment.OverviewFragment;
+import com.googlecode.hibiscusapp.fragment.AccountsFragment;
 import com.googlecode.hibiscusapp.fragment.StatisticsFragment;
 import com.googlecode.hibiscusapp.fragment.TransactionDetailsFragment;
 import com.googlecode.hibiscusapp.fragment.TransactionsFragment;
@@ -40,7 +40,7 @@ import com.googlecode.hibiscusapp.util.Constants;
  */
 public class MainActivity extends ActionBarActivity implements
     TransactionsFragment.OnTransactionSelectedCallback,
-    OverviewFragment.OnAccountSelectedCallback
+    AccountsFragment.OnAccountSelectedCallback
 
 {
     private CharSequence appTitle;
@@ -203,7 +203,7 @@ public class MainActivity extends ActionBarActivity implements
                 fragment = new TransactionsFragment();
                 break;
             case Constants.MENU_ITEM_OVERVIEW:
-                fragment = new OverviewFragment();
+                fragment = new AccountsFragment();
                 break;
 
             case Constants.MENU_ITEM_SETTINGS:

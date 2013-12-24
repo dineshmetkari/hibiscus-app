@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- scrollable list of account overviews -->
+    <ListView
+        android:id="@+id/overview_accounts_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@color/content_background_color"
+        android:dividerHeight="@dimen/box_divider_height" />
+
+</LinearLayout>

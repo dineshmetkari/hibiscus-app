@@ -6,7 +6,7 @@
     android:background="@color/box_background_color"
     android:paddingTop="@dimen/box_padding"
     android:paddingLeft="@dimen/box_padding"
-    android:paddingRight="@dimen/box_padding"
+    android:paddingRight="0dp"
     android:paddingBottom="@dimen/box_padding_bottom"
     android:layout_marginBottom="@dimen/box_divider_height">
 
@@ -27,16 +27,22 @@
             android:id="@+id/overview_account_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="123456"
             android:textSize="@dimen/overview_account_title_size" />
 
         <TextView
             android:id="@+id/overview_account_date"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
+            android:layout_width="@dimen/tag_width"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:background="@drawable/tag_background"
             android:text="12.12.2013"
-            android:textSize="@dimen/overview_account_date_size" />
+            android:textSize="@dimen/tag_text_size"
+            android:gravity="center_vertical|right"
+            android:textStyle="bold"
+            android:paddingRight="6dp"
+            android:textColor="@color/tag_text_color" />
 
     </LinearLayout>
 
@@ -44,13 +50,15 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/drawer_divider_height"
         android:background="@color/divider_color"
+        android:layout_marginRight="@dimen/box_padding"
         android:layout_marginBottom="@dimen/box_padding_bottom" />
 
     <!-- balance-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginRight="@dimen/box_padding">
 
         <TextView
             android:layout_width="wrap_content"
@@ -69,7 +77,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginRight="@dimen/box_padding">
 
         <TextView
             android:layout_width="wrap_content"
@@ -87,7 +96,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginRight="@dimen/box_padding">
 
         <TextView
             android:layout_width="0dp"
@@ -105,7 +115,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginRight="@dimen/box_padding">
 
         <TextView
             android:id="@+id/overview_account_receipts"
@@ -129,7 +140,8 @@
         android:layout_height="@dimen/drawer_divider_height"
         android:background="@color/divider_color"
         android:layout_marginBottom="@dimen/box_padding_bottom"
-        android:layout_marginTop="@dimen/box_padding_bottom" />
+        android:layout_marginTop="@dimen/box_padding_bottom"
+        android:layout_marginRight="@dimen/box_padding" />
 
     <!-- transactions button -->
     <LinearLayout
@@ -138,7 +150,8 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:background="@drawable/pressed_highlight"
-        android:padding="@dimen/textview_padding">
+        android:padding="@dimen/textview_padding"
+        android:layout_marginRight="@dimen/box_padding">
 
         <TextView
             android:layout_width="wrap_content"
