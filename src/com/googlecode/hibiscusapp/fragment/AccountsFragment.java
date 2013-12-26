@@ -15,8 +15,6 @@ import com.googlecode.hibiscusapp.model.AccountOverview;
 import com.googlecode.hibiscusapp.util.UiUtil;
 
 import java.text.DateFormat;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -82,14 +80,14 @@ public class AccountsFragment extends Fragment
     {
         private AccountOverviewArrayAdapter(Context context, List<AccountOverview> objects)
         {
-            super(context, R.layout.overview_account, objects);
+            super(context, R.layout.account_item, objects);
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent)
         {
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View rowView = inflater.inflate(R.layout.overview_account, null, false);
+            View rowView = inflater.inflate(R.layout.account_item, null, false);
 
             final AccountOverview item = getItem(position);
 

@@ -3,42 +3,47 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/box_padding"
+    android:paddingTop="@dimen/box_padding"
+    android:paddingLeft="@dimen/box_padding"
+    android:paddingBottom="@dimen/box_padding"
+    android:paddingRight="0dp"
     android:background="@color/box_background_color">
 
     <!-- account name -->
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/heading_padding_bottom">
 
         <TextView
             android:id="@+id/transaction_details_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:textSize="@dimen/transaction_details_header_size"
             android:text="Onlineüberweisung"
             android:textAllCaps="true" />
 
         <TextView
             android:id="@+id/transaction_details_date"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
+            android:layout_width="@dimen/tag_width"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:background="@drawable/tag_background"
             android:text="01.01.2015"
-            android:textSize="@dimen/transaction_details_date_size" />
+            android:textSize="@dimen/tag_text_size"
+            android:gravity="center_vertical|right"
+            android:textStyle="bold"
+            android:paddingRight="@dimen/tag_padding_right"
+            android:textColor="@color/tag_text_color" />
 
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/drawer_divider_height"
-        android:background="@color/divider_color"
-        android:layout_marginBottom="@dimen/box_padding_bottom" />
 
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/box_padding"
         android:rowCount="5"
         android:columnCount="2">
 
@@ -54,7 +59,6 @@
             android:id="@+id/transaction_details_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/label_margin"
             android:textStyle="bold"
             android:text="... Betrag ..."
             android:textColor="@color/balance_positive" />
@@ -71,7 +75,6 @@
             android:id="@+id/transaction_details_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/label_margin"
             android:textStyle="bold"
             android:text="... Empfängername..." />
 
@@ -87,7 +90,6 @@
             android:id="@+id/transaction_details_account_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/label_margin"
             android:textStyle="bold"
             android:text="... Kontonummer ..." />
 
@@ -103,7 +105,6 @@
             android:id="@+id/transaction_details_bank_identifier"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/label_margin"
             android:textStyle="bold"
             android:text="... Bankleitzahl ..." />
 
@@ -118,8 +119,9 @@
             android:id="@+id/transaction_details_reference"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/label_margin"
             android:textStyle="bold"
+            android:singleLine="false"
+            android:scrollHorizontally="false"
             android:text="... Verwendungszweck ..." />
     </GridLayout>
 

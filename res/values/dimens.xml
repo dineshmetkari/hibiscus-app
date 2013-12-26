@@ -13,6 +13,7 @@
     <dimen name="box_padding">20dp</dimen>
     <dimen name="box_padding_small">12dp</dimen>
     <dimen name="box_padding_bottom">10dp</dimen>
+    <dimen name="heading_padding_bottom">15dp</dimen>
 
     <!-- highlight styles -->
     <dimen name="highlight_corner_radius">0dp</dimen>
@@ -37,4 +38,5 @@
     <dimen name="tag_border_width">3dp</dimen>
     <dimen name="tag_width">90dp</dimen>
     <dimen name="tag_text_size">12dp</dimen>
+    <dimen name="tag_padding_right">6dp</dimen>
 </resources>

@@ -14,7 +14,8 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/heading_padding_bottom">
 
         <TextView
             android:layout_width="wrap_content"
@@ -41,17 +42,10 @@
             android:textSize="@dimen/tag_text_size"
             android:gravity="center_vertical|right"
             android:textStyle="bold"
-            android:paddingRight="6dp"
+            android:paddingRight="@dimen/tag_padding_right"
             android:textColor="@color/tag_text_color" />
 
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/drawer_divider_height"
-        android:background="@color/divider_color"
-        android:layout_marginRight="@dimen/box_padding"
-        android:layout_marginBottom="@dimen/box_padding_bottom" />
 
     <!-- balance-->
     <LinearLayout
