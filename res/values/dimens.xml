@@ -28,6 +28,7 @@
     <dimen name="textview_padding">3dp</dimen>
 
     <!-- text sizes-->
+    <dimen name="box_title_size">20dp</dimen>
     <dimen name="overview_account_title_size">20dp</dimen>
     <dimen name="transaction_title_size">20dp</dimen>
     <dimen name="transaction_details_header_size">20dp</dimen>
@@ -35,7 +36,7 @@
     <dimen name="overview_account_date_size">12dp</dimen>
 
     <!-- tag dimensions -->
-    <dimen name="tag_border_width">3dp</dimen>
+    <dimen name="tag_border_width">2dp</dimen>
     <dimen name="tag_width">90dp</dimen>
     <dimen name="tag_text_size">12dp</dimen>
     <dimen name="tag_padding_right">6dp</dimen>

@@ -37,7 +37,7 @@ public class SynchronizationTask extends AsyncTask<Context, Void, Void>
         if (params.length == 0) {
             throw new IllegalArgumentException("you need to provide at least one context");
         }
-        Log.d(Constants.LOG_TAG, "STARTING SERVICE");
+        Log.d(Constants.LOG_TAG, "SynchronizationTask running...");
 
         Context context = params[0];
 

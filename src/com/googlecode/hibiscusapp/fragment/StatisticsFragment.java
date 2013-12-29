@@ -5,6 +5,8 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
@@ -15,6 +17,11 @@ import android.widget.Button;
 import android.widget.Toast;
 import com.googlecode.hibiscusapp.R;
 import com.googlecode.hibiscusapp.activity.MainActivity;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
 
