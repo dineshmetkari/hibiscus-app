@@ -75,6 +75,7 @@
         android:layout_marginRight="@dimen/box_padding">
 
         <TextView
+            android:id="@+id/overview_account_month_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/label_margin"

@@ -15,6 +15,8 @@ import com.googlecode.hibiscusapp.model.AccountOverview;
 import com.googlecode.hibiscusapp.util.UiUtil;
 
 import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -99,6 +101,13 @@ public class AccountsFragment extends Fragment
             DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(getContext());
             TextView accountDate = (TextView) rowView.findViewById(R.id.overview_account_date);
             accountDate.setText(dateFormat.format(item.getAccount().getBalanceDate()));
+
+            // set the current month text
+            String monthText = getActivity().getResources().getString(R.string.accounts_month_transactions);
+            Calendar now = new GregorianCalendar();
+            String[] months = getActivity().getResources().getStringArray(R.array.months);
+            TextView monthTextView = (TextView) rowView.findViewById(R.id.overview_account_month_text);
+            monthTextView.setText(monthText + " " + months[now.get(Calendar.MONTH)]);
 
             // set the balance
             TextView balance = (TextView) rowView.findViewById(R.id.overview_account_balance);
