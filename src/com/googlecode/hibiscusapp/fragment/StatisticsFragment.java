@@ -18,13 +18,6 @@ import android.widget.Toast;
 import com.googlecode.hibiscusapp.R;
 import com.googlecode.hibiscusapp.activity.MainActivity;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-
-import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
-
 /**
  * Package: com.googlecode.hibiscusapp.fragment
  * Date: 09/09/13
@@ -73,7 +66,7 @@ public class StatisticsFragment extends Fragment
                 PendingIntent resultPendingIntent =
                     stackBuilder.getPendingIntent(
                         0,
-                        FLAG_UPDATE_CURRENT
+                        0
                     );
                 mBuilder.setContentIntent(resultPendingIntent);
                 NotificationManager mNotificationManager =
