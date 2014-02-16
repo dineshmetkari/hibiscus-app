@@ -1,0 +1,895 @@
+<?xml version="1.0" encoding="utf-8"?>
+<categories>
+    <category>
+        <name>Arbeit</name>
+        <color />
+        <description />
+        <keywords />
+        <subcategories>
+            <category>
+                <name>Gehalt</name>
+                <color />
+                <description>Lohn, Aushilfslohn, Weihnachtsgeld, Urlaubsgeld</description>
+                <keywords>
+                    <keyword>gage</keyword>
+                    <keyword>gehalt</keyword>
+                    <keyword>lohn</keyword>
+                </keywords>
+                <subcategories />
+            </category>
+            <category>
+                <name>Lohnersatzzahlungen</name>
+                <color />
+                <description />
+                <keywords />
+                <subcategories />
+            </category>
+            <category>
+                <name>Werbungskosten</name>
+                <color />
+                <description>Arbeitszimmer, Arbeitskleidung, Fachliteratur, Werkzeug, Bürobedarf</description>
+                <keywords />
+                <subcategories />
+            </category>
+        </subcategories>
+    </category>
+    <category>
+        <name>Bürokratie</name>
+        <color />
+        <description>Steuern, Banken, Versicherungen, Gebühren</description>
+        <keywords />
+        <subcategories>
+            <category>
+                <name>Banken</name>
+                <color />
+                <description>Wertpapiere, Sparbücher, Festgelder, Girokonten</description>
+                <keywords />
+                <subcategories>
+                    <category>
+                        <name>Bankgebühren</name>
+                        <color />
+                        <description />
+                        <keywords>
+                            <keyword>depotgebühren</keyword>
+                            <keyword>entgeldabschluss</keyword>
+                        </keywords>
+                        <subcategories />
+                    </category>
+                    <category>
+                        <name>Dividenden</name>
+                        <color />
+                        <description>Kapitalerträge</description>
+                        <keywords>
+                            <keyword>dividende</keyword>
+                        </keywords>
+                        <subcategories />
+                    </category>
+                    <category>
+                        <name>Kredite</name>
+                        <color />
+                        <description />
+                        <keywords>
+                            <keyword>darlehen</keyword>
+                            <keyword>kredit</keyword>
+                            <keyword>tilgung</keyword>
+                        </keywords>
+                        <subcategories />
+                    </category>
+                    <category>
+                        <name>Zinsen</name>
+                        <color />
+                        <description />
+                        <keywords>
+                            <keyword>habenzinsen</keyword>
+                            <keyword>sollzinsen</keyword>
+                            <keyword>zins</keyword>
+                            <keyword>zinsen</keyword>
+                            <keyword>zinsgutschrift</keyword>
+                        </keywords>
+                        <subcategories />
+                    </category>
+                </subcategories>
+            </category>
+            <category>
+                <name>Gebühren</name>
+                <color />
+                <description>Öffentliche Gebühren, Beiträge</description>
+                <keywords />
+                <subcategories />
+            </category>
+            <category>
+                <name>Rente</name>
+                <color />
+                <description>Rente, Pension</description>
+                <keywords>
+                    <keyword>pension</keyword>
+                    <keyword>rente</keyword>
+                </keywords>
+                <subcategories />
+            </category>
+            <category>
+                <name>Steuer</name>
+                <color />
+                <description>Steuer ohne Kfz-Steuer, Steuererstattungen</description>
+                <keywords>
+                    <keyword>grundsteuer</keyword>
+                    <keyword>steuer</keyword>
+                    <keyword>-kfz</keyword>
+                </keywords>
+                <subcategories />
+            </category>
+            <category>
+                <name>Steuerberatung</name>
+                <color />
+                <description />
+                <keywords>
+                    <keyword>steuerkanzlei</keyword>
+                </keywords>
+                <subcategories />
+            </category>
+            <category>
+                <name>Unterstützung</name>
+                <color />
+                <description>Staatliche Unterstützungszahlungen</description>
+                <keywords />
+                <subcategories />
+            </category>
+            <category>
+                <name>Versicherungen</name>
+                <color />
+                <description>Ohne Krankenversicherung</description>
+                <keywords />
+                <subcategories>
+                    <category>
+                        <name>Haftpflicht</name>
+                        <color />
+                        <description />
+                        <keywords>
+                            <keyword>haftpflicht</keyword>
+                            <keyword><![CDATA[versicherung&haft]]></keyword>
+                            <keyword><![CDATA[versicherungskammer&haft]]></keyword>
+                        </keywords>
+                        <subcategories />
+                    </category>
+                    <category>
+                        <name>Haushalt</name>
+                        <color />
+                        <description />
+                        <keywords>
+                            <keyword>hausrat</keyword>
+                        </keywords>
+                        <subcategories />
+                    </category>
+                    <category>
+                        <name>Lebensversicherung</name>
+                        <color />
+                        <description />
+                        <keywords>
+                            <keyword>lebensversicherung</keyword>
+                            <keyword><![CDATA[versicherung&leben]]></keyword>
+                            <keyword><![CDATA[versicherungskammer&leben]]></keyword>
+                        </keywords>
+                        <subcategories />
+                    </category>
+                    <category>
+                        <name>Rechtsschutz</name>
+                        <color />
+                        <description />
+                        <keywords>
+                            <keyword>advocard</keyword>
+                            <keyword>arag</keyword>
+                            <keyword>rechtsschutz</keyword>
+                            <keyword><![CDATA[versicherung&recht]]></keyword>
+                        </keywords>
+                        <subcategories />
+                    </category>
+                    <category>
+                        <name>Sonstige Versicherungen</name>
+                        <color />
+                        <description>Berufsunfähigkeit, Unfallversicherung</description>
+                        <keywords />
+                        <subcategories />
+                    </category>
+                </subcategories>
+            </category>
+        </subcategories>
+    </category>
+    <category>
+        <name>Freizeit</name>
+        <color />
+        <description />
+        <keywords />
+        <subcategories>
+            <category>
+                <name>Ausgehen</name>
+                <color />
+                <description>Ausflüge, Restautantbesuche</description>
+                <keywords>
+                    <keyword>gaststaette</keyword>
+                    <keyword>gaststätte</keyword>
+                    <keyword>mcdonalds</keyword>
+                    <keyword>pizzeria</keyword>
+                    <keyword>restaurant</keyword>
+                    <keyword><![CDATA[burger&king]]></keyword>
+                </keywords>
+                <subcategories />
+            </category>
+            <category>
+                <name>Haustier</name>
+                <color />
+                <description />
+                <keywords>
+                    <keyword>fressnapf</keyword>
+                    <keyword>futterhaus</keyword>
+                    <keyword>zoohandlung</keyword>
+                </keywords>
+                <subcategories />
+            </category>
+            <category>
+                <name>Hobby</name>
+                <color />
+                <description />
+                <keywords />
+                <subcategories />
+            </category>
+            <category>
+                <name>Kultur</name>
+                <color />
+                <description>Kino, Theater, Konzert, Museum</description>
+                <keywords>
+                    <keyword>kino</keyword>
+                    <keyword>konzert</keyword>
+                    <keyword>museum</keyword>
+                    <keyword>musical</keyword>
+                    <keyword>theater</keyword>
+                </keywords>
+                <subcategories />
+            </category>
+            <category>
+                <name>Medien</name>
+                <color />
+                <description>Bücher, Zeitschriften, Filme, Musik</description>
+                <keywords>
+                    <keyword>buchhandlung</keyword>
+                    <keyword>buecher</keyword>
+                    <keyword>bücher</keyword>
+                    <keyword>hugendubel</keyword>
+                    <keyword>itunes</keyword>
+                    <keyword>thalia</keyword>
+                    <keyword>weltbild</keyword>
+                    <keyword>zeitung</keyword>
+                    <keyword><![CDATA[amazon&downloads]]></keyword>
+                    <keyword><![CDATA[magazin&abo]]></keyword>
+                </keywords>
+                <subcategories />
+            </category>
+            <category>
+                <name>Sport</name>
+                <color />
+                <description>Ausrüstung, Mitgliedsbeiträge, Veranstaltungen</description>
+                <keywords>
+                    <keyword>alpenverein</keyword>
+                    <keyword>fitness</keyword>
+                    <keyword>intersport</keyword>
+                    <keyword>marathon</keyword>
+                    <keyword>runnerspoint</keyword>
+                    <keyword>sport</keyword>
+                    <keyword>sporthaus</keyword>
+                    <keyword>sports</keyword>
+                    <keyword>triathlon</keyword>
+                    <keyword><![CDATA[mika&timing]]></keyword>
+                </keywords>
+                <subcategories />
+            </category>
+            <category>
+                <name>Unterhaltungselektronik</name>
+                <color />
+                <description>PC, Tablet-PC, Kamera, Computerspiele</description>
+                <keywords />
+                <subcategories />
+            </category>
+            <category>
+                <name>Urlaub</name>
+                <color />
+                <description />
+                <keywords>
+                    <keyword>alltours</keyword>
+                    <keyword>dertour</keyword>
+                    <keyword>expedia</keyword>
+                    <keyword>interchalet</keyword>
+                    <keyword>its</keyword>
+                    <keyword>ltur</keyword>
+                    <keyword>neckermannreisen</keyword>
+                    <keyword>opodo</keyword>
+                    <keyword>reisebuero</keyword>
+                    <keyword>reisebüro</keyword>
+                    <keyword>reisen</keyword>
+                    <keyword>tui</keyword>
+                    <keyword>urlaub</keyword>
+                </keywords>
+                <subcategories />
+            </category>
+        </subcategories>
+    </category>
+    <category>
+        <name>Gesundheit</name>
+        <color />
+        <description />
+        <keywords />
+        <subcategories>
+            <category>
+                <name>Arzt</name>
+                <color />
+                <description>Eigene Arztkosten und Zuzahlungen, Praxisgebühr</description>
+                <keywords>
+                    <keyword>arzt</keyword>
+                    <keyword>doktor</keyword>
+                    <keyword>krankenhaus</keyword>
+                    <keyword>praxisgebühr</keyword>
+                    <keyword>praxisgebuehr</keyword>
+                    <keyword>-zahnarzt</keyword>
+                </keywords>
+                <subcategories />
+            </category>
+            <category>
+                <name>Krankenversicherung</name>
+                <color />
+                <description />
+                <keywords>
+                    <keyword>aok</keyword>
+                    <keyword>barmer</keyword>
+                    <keyword>bkk</keyword>
+                    <keyword>dak</keyword>
+                    <keyword>dvk</keyword>
+                    <keyword>ikk</keyword>
+                    <keyword>kkh</keyword>
+                    <keyword>kanppschaft</keyword>
+                    <keyword>krankenkasse</keyword>
+                    <keyword>krankenversicherung</keyword>
+                    <keyword>sbk</keyword>
+                </keywords>
+                <subcategories />
+            </category>
+            <category>
+                <name>Medikamente</name>
+                <color />
+                <description />
+                <keywords>
+                    <keyword>apotheke</keyword>
+                    <keyword>docmorris</keyword>
+                    <keyword>sanicare</keyword>
+                </keywords>
+                <subcategories />
+            </category>
+            <category>
+                <name>Optiker</name>
+                <color />
+                <description>Brille, Kontaktlinsen</description>
+                <keywords>
+                    <keyword>aktivoptik</keyword>
+                    <keyword>apollo</keyword>
+                    <keyword>brille</keyword>
+                    <keyword>brillenwelt</keyword>
+                    <keyword>eyes</keyword>
+                    <keyword>fielmann</keyword>
+                    <keyword>krane</keyword>
+                    <keyword>optik</keyword>
+                    <keyword>optiker</keyword>
+                    <keyword>zantler</keyword>
+                </keywords>
+                <subcategories />
+            </category>
+            <category>
+                <name>Zahnarzt</name>
+                <color />
+                <description />
+                <keywords>
+                    <keyword>zahnarzt</keyword>
+                    <keyword>zahnbehandlung</keyword>
+                    <keyword>zahnklinik</keyword>
+                </keywords>
+                <subcategories />
+            </category>
+        </subcategories>
+    </category>
+    <category>
+        <name>Haushalt</name>
+        <color />
+        <description />
+        <keywords />
+        <subcategories>
+            <category>
+                <name>Bekleidung</name>
+                <color />
+                <description>Kleidung und Schuhe</description>
+                <keywords>
+                    <keyword>adler</keyword>
+                    <keyword>benetton</keyword>
+                    <keyword>biba</keyword>
+                    <keyword>bonita</keyword>
+                    <keyword>boutique</keyword>
+                    <keyword>cecil</keyword>
+                    <keyword>cunda</keyword>
+                    <keyword>deichmann</keyword>
+                    <keyword>desigual</keyword>
+                    <keyword>edc</keyword>
+                    <keyword>esprit</keyword>
+                    <keyword>fashion</keyword>
+                    <keyword>g-fashion</keyword>
+                    <keyword>g-star</keyword>
+                    <keyword>hallhuber</keyword>
+                    <keyword>hundm</keyword>
+                    <keyword>hunkeköller</keyword>
+                    <keyword>jeans</keyword>
+                    <keyword>kik</keyword>
+                    <keyword>levis</keyword>
+                    <keyword>madonna</keyword>
+                    <keyword>mango</keyword>
+                    <keyword>mexx</keyword>
+                    <keyword>misterlady</keyword>
+                    <keyword>mustang</keyword>
+                    <keyword>newyorker</keyword>
+                    <keyword>olymp</keyword>
+                    <keyword>orsay</keyword>
+                    <keyword>palmers</keyword>
+                    <keyword>pimkie</keyword>
+                    <keyword>promod</keyword>
+                    <keyword>replay</keyword>
+                    <keyword>ruppert</keyword>
+                    <keyword>s.oliver</keyword>
+                    <keyword>salamander</keyword>
+                    <keyword>schuhe</keyword>
+                    <keyword>schuhhaus</keyword>
+                    <keyword>sisley</keyword>
+                    <keyword>tallyweijl</keyword>
+                    <keyword>tamaris</keyword>
+                    <keyword>wissmach</keyword>
+                    <keyword>zalando</keyword>
+                    <keyword>zara</keyword>
+                    <keyword>zero</keyword>
+                    <keyword><![CDATA[camp&david]]></keyword>
+                    <keyword><![CDATA[forever&18]]></keyword>
+                    <keyword><![CDATA[gerry&weber]]></keyword>
+                    <keyword><![CDATA[jack&jones]]></keyword>
+                    <keyword><![CDATA[mister&lady]]></keyword>
+                    <keyword><![CDATA[new&yorker]]></keyword>
+                    <keyword><![CDATA[sinn&leffers]]></keyword>
+                    <keyword><![CDATA[street&one]]></keyword>
+                    <keyword><![CDATA[tally&weijl]]></keyword>
+                    <keyword><![CDATA[tom&tailor]]></keyword>
+                    <keyword><![CDATA[tommy&hilfiger]]></keyword>
+                    <keyword><![CDATA[ulla&popken]]></keyword>
+                    <keyword><![CDATA[vero&moda]]></keyword>
+                </keywords>
+                <subcategories />
+                <category>
+                    <name>Haushaltswaren</name>
+                    <color />
+                    <description>Geschirr, Besteck, Kleingeräte</description>
+                    <keywords />
+                    <subcategories />
+                </category>
+                <category>
+                    <name>Lebensmittel</name>
+                    <color />
+                    <description>Nahrungsmittel, Getränke</description>
+                    <keywords>
+                        <keyword>aldi</keyword>
+                        <keyword>alnatura</keyword>
+                        <keyword>basic</keyword>
+                        <keyword>edeka</keyword>
+                        <keyword>kaiser</keyword>
+                        <keyword>kaufland</keyword>
+                        <keyword>lidl</keyword>
+                        <keyword>marktkauf</keyword>
+                        <keyword>norma</keyword>
+                        <keyword>penny</keyword>
+                        <keyword>real</keyword>
+                        <keyword>rewe</keyword>
+                        <keyword>tengelmann</keyword>
+                        <keyword>v-markt</keyword>
+                        <keyword>vmarkt</keyword>
+                        <keyword><![CDATA[hit&markt]]></keyword>
+                        <keyword><![CDATA[netto&discount]]></keyword>
+                    </keywords>
+                    <subcategories />
+                </category>
+                <category>
+                    <name>Sonstiges</name>
+                    <color />
+                    <description>Körperpflege, Reinigungsmittel</description>
+                    <keywords>
+                        <keyword>drogerie</keyword>
+                        <keyword>drogeriemarkt</keyword>
+                        <keyword>rossmann</keyword>
+                        <keyword>schlecker</keyword>
+                        <keyword><![CDATA[ihr&platz]]></keyword>
+                        <keyword><![CDATA[mueller&kg]]></keyword>
+                    </keywords>
+                    <subcategories />
+                </category>
+            </category>
+        </subcategories>
+    </category>
+    <category>
+        <name>Kinder</name>
+        <color />
+        <description />
+        <keywords />
+        <subcategories>
+            <category>
+                <name>Babyartikel</name>
+                <color />
+                <description />
+                <keywords>
+                    <keyword>baby</keyword>
+                </keywords>
+                <subcategories />
+            </category>
+            <category>
+                <name>Bekleidung</name>
+                <color />
+                <description />
+                <keywords>
+                    <keyword>jack-o</keyword>
+                </keywords>
+                <subcategories />
+            </category>
+            <category>
+                <name>Kindergeld</name>
+                <color />
+                <description>Kindergeld, Erziehungsgeld</description>
+                <keywords>
+                    <keyword>familienkasse</keyword>
+                    <keyword>famkasse</keyword>
+                    <keyword>kindergeld</keyword>
+                </keywords>
+                <subcategories />
+            </category>
+            <category>
+                <name>Nachhilfe</name>
+                <color />
+                <description />
+                <keywords>
+                    <keyword>nachhilfe</keyword>
+                </keywords>
+                <subcategories />
+            </category>
+            <category>
+                <name>Schule</name>
+                <color />
+                <description>Fahrtkosten, Gebühren, Lehrmittel, Wandertag</description>
+                <keywords>
+                    <keyword>gymnasium</keyword>
+                    <keyword>hauptschule</keyword>
+                    <keyword>mittelschule</keyword>
+                    <keyword>realschule</keyword>
+                    <keyword>schule</keyword>
+                </keywords>
+                <subcategories />
+            </category>
+        </subcategories>
+    </category>
+    <category>
+        <name>Privat</name>
+        <color />
+        <description />
+        <keywords />
+        <subcategories>
+            <category>
+                <name>Bargeldabhebung</name>
+                <color />
+                <description>Geldautomat, Barauszahlungen, Geldkarte laden</description>
+                <keywords>
+                    <keyword>geldautomat</keyword>
+                    <keyword>geldkarte</keyword>
+                    <keyword><![CDATA[ga&nr########]]></keyword>
+                </keywords>
+                <subcategories />
+            </category>
+            <category>
+                <name>Kirche</name>
+                <color />
+                <description />
+                <keywords>
+                    <keyword>kirche</keyword>
+                    <keyword>kirchensteuer</keyword>
+                </keywords>
+                <subcategories />
+            </category>
+            <category>
+                <name>Mobiltelefon</name>
+                <color />
+                <description>Anschaffung, Vertragskosten, Aufladung</description>
+                <keywords>
+                    <keyword>base</keyword>
+                    <keyword>congstar</keyword>
+                    <keyword>debitel</keyword>
+                    <keyword>e-plus</keyword>
+                    <keyword>eplus</keyword>
+                    <keyword>fonic</keyword>
+                    <keyword>klarmobil</keyword>
+                    <keyword>mobilcom</keyword>
+                    <keyword>mobiltelefon</keyword>
+                    <keyword>o2</keyword>
+                    <keyword>simply</keyword>
+                    <keyword>simyo</keyword>
+                    <keyword>t-mobile</keyword>
+                    <keyword>tmobile</keyword>
+                    <keyword>vodafone</keyword>
+                </keywords>
+                <subcategories />
+            </category>
+            <category>
+                <name>Spenden</name>
+                <color />
+                <description />
+                <keywords>
+                    <keyword>caritas</keyword>
+                    <keyword>spende</keyword>
+                    <keyword>unicef</keyword>
+                    <keyword><![CDATA[brot&welt]]></keyword>
+                </keywords>
+                <subcategories />
+            </category>
+            <category>
+                <name>Verkäufe</name>
+                <color />
+                <description>E-Bay, Flohmarkt</description>
+                <keywords />
+                <subcategories />
+            </category>
+            <category>
+                <name>Verkehrsmittel</name>
+                <color />
+                <description />
+                <keywords />
+                <subcategories>
+                    <category>
+                        <name>Auto</name>
+                        <color />
+                        <description>Pkw, Motorrad</description>
+                        <keywords />
+                        <subcategories>
+                            <category>
+                                <name>Garage</name>
+                                <color />
+                                <description>Garage oder Stellplatz</description>
+                                <keywords>
+                                    <keyword>garage</keyword>
+                                    <keyword>stellplatz</keyword>
+                                </keywords>
+                                <subcategories />
+                            </category>
+                            <category>
+                                <name>Steuer</name>
+                                <color />
+                                <description>Kfz-Steuer</description>
+                                <keywords>
+                                    <keyword><![CDATA[kfz&steuer]]></keyword>
+                                </keywords>
+                                <subcategories />
+                            </category>
+                            <category>
+                                <name>Tanken</name>
+                                <color />
+                                <description />
+                                <keywords>
+                                    <keyword>agip</keyword>
+                                    <keyword>aral</keyword>
+                                    <keyword>avia</keyword>
+                                    <keyword>esso</keyword>
+                                    <keyword>jet</keyword>
+                                    <keyword>omv</keyword>
+                                    <keyword>petrol</keyword>
+                                    <keyword>shell</keyword>
+                                    <keyword>tank</keyword>
+                                    <keyword>tanken</keyword>
+                                    <keyword>tankstelle</keyword>
+                                    <keyword>total</keyword>
+                                </keywords>
+                                <subcategories />
+                            </category>
+                            <category>
+                                <name>Versicherung</name>
+                                <color />
+                                <description>Kfz-Versicherung</description>
+                                <keywords>
+                                    <keyword><![CDATA[kfz&versicherung]]></keyword>
+                                </keywords>
+                                <subcategories />
+                            </category>
+                            <category>
+                                <name>Werkstatt</name>
+                                <color />
+                                <description />
+                                <keywords>
+                                    <keyword>atu</keyword>
+                                    <keyword>carglass</keyword>
+                                    <keyword>mahag</keyword>
+                                    <keyword><![CDATA[pit&stop]]></keyword>
+                                    <keyword><![CDATA[auto&service]]></keyword>
+                                    <keyword><![CDATA[auto&werkstatt]]></keyword>
+                                </keywords>
+                                <subcategories />
+                            </category>
+                        </subcategories>
+                    </category>
+                    <category>
+                        <name>Mietfahrzeug</name>
+                        <color />
+                        <description />
+                        <keywords>
+                            <keyword>avis</keyword>
+                            <keyword>buchbinder</keyword>
+                            <keyword>europcar</keyword>
+                            <keyword>hertz</keyword>
+                            <keyword>sixt</keyword>
+                        </keywords>
+                        <subcategories />
+                    </category>
+                    <category>
+                        <name>Taxi</name>
+                        <color />
+                        <description />
+                        <keywords>
+                            <keyword>funktaxi</keyword>
+                            <keyword>taxi</keyword>
+                            <keyword>taxizentrale</keyword>
+                        </keywords>
+                        <subcategories />
+                    </category>
+                    <category>
+                        <name>Öffentliche Verkehrsmittel</name>
+                        <color />
+                        <description>Monatskarten, Bahntickets</description>
+                        <keywords>
+                            <keyword>avv</keyword>
+                            <keyword>bahn</keyword>
+                            <keyword>fahrschein</keyword>
+                            <keyword>hvv</keyword>
+                            <keyword>mvg</keyword>
+                            <keyword>nvv</keyword>
+                            <keyword>rev</keyword>
+                            <keyword>rmv</keyword>
+                            <keyword>vbb</keyword>
+                            <keyword>vbn</keyword>
+                            <keyword>vrn</keyword>
+                        </keywords>
+                        <subcategories />
+                    </category>
+                </subcategories>
+            </category>
+        </subcategories>
+    </category>
+    <category>
+        <name>Wohnen</name>
+        <color />
+        <description />
+        <keywords />
+        <subcategories>
+            <category>
+                <name>Haushaltsgeräte</name>
+                <color />
+                <description>Waschmaschine, Kühlschrank</description>
+                <keywords />
+                <subcategories />
+            </category>
+            <category>
+                <name>Inneneinrichtung</name>
+                <color />
+                <description>Möbel, Accessoires</description>
+                <keywords>
+                    <keyword>hiendl</keyword>
+                    <keyword>ikea</keyword>
+                    <keyword>moebel</keyword>
+                    <keyword>moebelhaus</keyword>
+                    <keyword>möbel</keyword>
+                    <keyword>möbelhaus</keyword>
+                    <keyword>segmueller</keyword>
+                    <keyword>segmüller</keyword>
+                    <keyword>xxxlutz</keyword>
+                </keywords>
+                <subcategories />
+            </category>
+            <category>
+                <name>Instandhaltung</name>
+                <color />
+                <description>Leuchtmittel, Reparaturen, Garten</description>
+                <keywords>
+                    <keyword>bauhaus</keyword>
+                    <keyword>baumarkt</keyword>
+                    <keyword>dehner</keyword>
+                    <keyword>garten</keyword>
+                    <keyword>gartencenter</keyword>
+                    <keyword>hagebau</keyword>
+                    <keyword>hornbach</keyword>
+                    <keyword>koelle</keyword>
+                    <keyword>kölle</keyword>
+                    <keyword>obi</keyword>
+                    <keyword>pflanzen</keyword>
+                    <keyword>praktiker</keyword>
+                    <keyword>toom</keyword>
+                </keywords>
+                <subcategories />
+            </category>
+            <category>
+                <name>Miete</name>
+                <color />
+                <description />
+                <keywords>
+                    <keyword>miete</keyword>
+                    <keyword>mietzins</keyword>
+                    <keyword>pacht</keyword>
+                </keywords>
+                <subcategories />
+            </category>
+            <category>
+                <name>Nebenkosten</name>
+                <color />
+                <description>Strom, Heizung, Wasser, Gas</description>
+                <keywords>
+                    <keyword>e-on</keyword>
+                    <keyword>enbw</keyword>
+                    <keyword>eon</keyword>
+                    <keyword>flexstrom</keyword>
+                    <keyword>gas</keyword>
+                    <keyword>heizung</keyword>
+                    <keyword>mieterverein</keyword>
+                    <keyword>oekostrom</keyword>
+                    <keyword>rwe</keyword>
+                    <keyword>stadtwerke</keyword>
+                    <keyword>strom</keyword>
+                    <keyword>vattenfall</keyword>
+                    <keyword>wasser</keyword>
+                    <keyword>yello</keyword>
+                    <keyword>ökostrom</keyword>
+                    <keyword><![CDATA[greenpeace&energy]]></keyword>
+                </keywords>
+                <subcategories />
+            </category>
+            <category>
+                <name>Rundfunkgebühren</name>
+                <color />
+                <description>GEZ, Rundfunk, Kabel</description>
+                <keywords>
+                    <keyword>gez</keyword>
+                    <keyword>rundfunk</keyword>
+                    <keyword>telecolumbus</keyword>
+                    <keyword>unitymedia</keyword>
+                    <keyword><![CDATA[kabel&bw]]></keyword>
+                    <keyword><![CDATA[kabel&deutschland]]></keyword>
+                    <keyword><![CDATA[tele&columbus]]></keyword>
+                </keywords>
+                <subcategories />
+            </category>
+            <category>
+                <name>Telekommunikation</name>
+                <color />
+                <description>Telefon, Internet</description>
+                <keywords>
+                    <keyword>dsl</keyword>
+                    <keyword>internet</keyword>
+                    <keyword>telefon</keyword>
+                    <keyword>telefonie</keyword>
+                    <keyword>telefonrechnung</keyword>
+                    <keyword>telekom</keyword>
+                    <keyword>-banking</keyword>
+                </keywords>
+                <subcategories />
+            </category>
+            <category>
+                <name>Wohngeld</name>
+                <color />
+                <description />
+                <keywords>
+                    <keyword>hausgeld</keyword>
+                    <keyword>w-geld</keyword>
+                    <keyword>wohngeld</keyword>
+                    <keyword><![CDATA[weg&geld]]></keyword>
+                </keywords>
+                <subcategories />
+            </category>
+        </subcategories>
+    </category>
+</categories>

@@ -33,7 +33,13 @@ public class AccountsFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.accounts, container, false);
+        View view = inflater.inflate(R.layout.accounts, container, false);
+
+        View headerView = inflater.inflate(R.layout.test, null, false);
+        ListView listView = (ListView) view.findViewById(R.id.overview_accounts_list);
+        listView.addHeaderView(headerView);
+
+        return view;
     }
 
     @Override
