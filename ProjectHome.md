@@ -1,0 +1,1 @@
+This android app provides an overview over the bank accouts, that are configured in the hibiscus server.
